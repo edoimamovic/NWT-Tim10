@@ -22,7 +22,6 @@ public class EtfMovieUsersApplication {
 	@Bean
 	public CommandLineRunner demo(UserRolesRepository repository) {
 		return (args) -> {
-		    // save a couple of customers
 			repository.save(new UserRoles("Guest"));
 			repository.save(new UserRoles("RegisteredUser"));
             repository.save(new UserRoles("TestRole1"));
