@@ -1,16 +1,11 @@
 package com.etfmovies.users;
 
-import com.etfmovies.users.models.ETFVideoUser;
-import com.etfmovies.users.models.PersonalData;
-import com.etfmovies.users.models.UserRoles;
-import com.etfmovies.users.repositories.ETFVideoUserRepository;
-import com.etfmovies.users.repositories.PersonalDataRepository;
-import com.etfmovies.users.repositories.UserRolesRepository;
+import com.etfmovies.users.models.Role;
+import com.etfmovies.users.repositories.RolesRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 
 @SpringBootApplication
 public class EtfMovieUsersApplication {
@@ -20,11 +15,11 @@ public class EtfMovieUsersApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(UserRolesRepository repository) {
+	public CommandLineRunner demo(RolesRepository repository) {
 		return (args) -> {
-			repository.save(new UserRoles("Guest"));
-			repository.save(new UserRoles("RegisteredUser"));
-            repository.save(new UserRoles("TestRole1"));
+			repository.save(new Role("Guest", ""));
+			repository.save(new Role("RegisteredUser", ""));
+            repository.save(new Role("TestRole1", ""));
 		};
 	}
 }

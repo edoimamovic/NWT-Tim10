@@ -2,10 +2,10 @@ package com.etfmovies.users.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Table(name = "personaldata")
-public class PersonalData {
+public class UserData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,8 +19,14 @@ public class PersonalData {
     @NotNull
     private String email;
 
-    public PersonalData(@NotNull String firstname, @NotNull String lastname, @NotNull String email) {
-        this.firstName = firstname;
+    @OneToMany(mappedBy = "id")
+    private List<Reviews> reviews;
+
+    @OneToMany(mappedBy = "id")
+    private List<Favourites> favourites;
+
+    public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull String email) {
+        this.firstName = firstName;
         this.lastName = lastname;
         this.email = email;
     }
@@ -47,5 +53,21 @@ public class PersonalData {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Reviews> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Favourites> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(List<Favourites> favourites) {
+        this.favourites = favourites;
     }
 }
