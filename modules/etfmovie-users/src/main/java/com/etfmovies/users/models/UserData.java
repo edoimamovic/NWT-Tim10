@@ -19,6 +19,12 @@ public class UserData {
     @NotNull
     private String email;
 
+    @NotNull
+    private String password;
+
+    @NotNull
+    private Boolean isActive;
+
     @OneToMany(mappedBy = "id")
     private List<Reviews> reviews;
 
@@ -29,6 +35,13 @@ public class UserData {
         this.firstName = firstName;
         this.lastName = lastname;
         this.email = email;
+    }
+
+    public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull String email, @NotNull String password) {
+        this.firstName = firstName;
+        this.lastName = lastname;
+        this.email = email;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -69,5 +82,21 @@ public class UserData {
 
     public void setFavourites(List<Favourites> favourites) {
         this.favourites = favourites;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }
