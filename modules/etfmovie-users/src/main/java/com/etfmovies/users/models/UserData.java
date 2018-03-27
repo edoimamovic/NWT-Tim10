@@ -25,11 +25,16 @@ public class UserData {
     @NotNull
     private Boolean isActive;
 
-    @OneToMany(mappedBy = "id")
+    @NotNull
+    private Long role_id;
+
+    @OneToMany(mappedBy = "user_id")
     private List<Reviews> reviews;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "user_id")
     private List<Favourites> favourites;
+
+    public UserData(){ }
 
     public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull String email) {
         this.firstName = firstName;
@@ -98,5 +103,13 @@ public class UserData {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public Long getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(Long role_id) {
+        this.role_id = role_id;
     }
 }

@@ -18,6 +18,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public UserData getUserDataByUserId(Long userId) {
+        return userDataRepository.findById(userId).get();
+    }
+
+    @Override
     public void updateUserData(UserData userData) {
         userDataRepository.save(userData);
     }

@@ -16,8 +16,10 @@ public class Role {
     @NotNull
     private String description;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "role_id")
     private List<UserData> users;
+
+    public Role() { }
 
     public Role(@NotNull String roleName, @NotNull String description) {
         this.roleName = roleName;

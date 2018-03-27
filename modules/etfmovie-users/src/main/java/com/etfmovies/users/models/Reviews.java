@@ -12,6 +12,11 @@ public class Reviews {
     @NotNull
     private String review;
 
+    @NotNull
+    private Long user_id;
+
+    public Reviews() { }
+
     public Reviews(@NotNull String review) {
         this.review = review;
     }
@@ -22,5 +27,13 @@ public class Reviews {
 
     public void setReview(String review) {
         this.review = review;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }
