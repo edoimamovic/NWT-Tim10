@@ -42,11 +42,13 @@ public class UserData {
         this.email = email;
     }
 
-    public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull String email, @NotNull String password) {
+    public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull String email, @NotNull String password, @NotNull Long role_id) {
         this.firstName = firstName;
         this.lastName = lastname;
         this.email = email;
         this.password = password;
+        this.isActive = false;
+        this.role_id = role_id;
     }
 
     public String getFirstName() {
