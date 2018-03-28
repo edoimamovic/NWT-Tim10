@@ -35,4 +35,6 @@ public class Film {
         this.video = video;
         this.category = category;
     }
+
+    public Film(){}
 }

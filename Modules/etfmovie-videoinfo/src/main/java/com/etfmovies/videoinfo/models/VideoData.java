@@ -1,5 +1,7 @@
 package com.etfmovies.videoinfo.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -42,18 +44,19 @@ public class VideoData {
     @NotNull
     private String format;
 
-    public VideoData getVideoData() {
-        return videoData;
+    public Video getVideo() {
+        return video;
     }
 
-    public void setVideoData(VideoData videoData) {
-        this.videoData = videoData;
+    public void setVideo(Video video) {
+        this.video = video;
     }
 
     @OneToOne
-    @JoinColumn(name = "videoDataId")
+    @JoinColumn(name = "videoId")
+    @JsonBackReference
     @NotNull
-    private VideoData videoData;
+    private Video video;
 
 
     public String getDiskPath() {
@@ -67,11 +70,14 @@ public class VideoData {
     @NotNull
     private String diskPath;
 
-    public VideoData(@NotNull Integer length, @NotNull Integer bitRate, @NotNull String format, @NotNull VideoData videoData, @NotNull String diskPath) {
+    public VideoData(){
+    }
+
+    public VideoData(@NotNull Integer length, @NotNull Integer bitRate, @NotNull String format, @NotNull Video video, @NotNull String diskPath) {
         this.length = length;
         this.bitRate = bitRate;
         this.format = format;
-        this.videoData = videoData;
+        this.video = video;
         this.diskPath = diskPath;
     }
 }

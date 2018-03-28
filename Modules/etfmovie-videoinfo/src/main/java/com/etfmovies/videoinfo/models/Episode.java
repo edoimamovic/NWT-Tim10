@@ -76,4 +76,6 @@ public class Episode {
     public void setShow(Show show) {
         this.show = show;
     }
+
+    public Episode(){}
 }

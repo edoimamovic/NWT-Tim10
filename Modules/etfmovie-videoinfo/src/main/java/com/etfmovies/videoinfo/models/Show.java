@@ -20,7 +20,8 @@ public class Show {
     public Show(@NotNull String title) {
         title = title;
     }
-
+    public Show(){
+    }
     @NotNull
     private String title;
 

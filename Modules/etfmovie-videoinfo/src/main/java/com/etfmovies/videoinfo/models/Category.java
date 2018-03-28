@@ -23,4 +23,6 @@ public class Category {
     public Category(@NotNull String categoryName) {
         this.categoryName = categoryName;
     }
+
+    public Category(){}
 }

@@ -60,4 +60,7 @@ public class Review {
     public void setReviewerId(Long reviewerId) {
         this.reviewerId = reviewerId;
     }
+
+    public Review(){
+    }
 }

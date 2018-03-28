@@ -1,5 +1,7 @@
 package com.etfmovies.videoinfo.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -11,21 +13,25 @@ public class Video {
     private Long id;
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        title = title;
     }
 
     @NotNull
-    private String Title;
+    private String title;
 
     @NotNull
     private Long uploadedBy;
 
     @NotNull
     private Date uploadDate;
+
+    @OneToOne(mappedBy = "video", orphanRemoval = true)
+    @JsonManagedReference
+    private VideoData videoData;
 
 
     public Long getUploadedBy() {
@@ -44,10 +50,28 @@ public class Video {
         uploadDate = uploadDate;
     }
 
+    public Video(){
+    }
 
     public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate) {
-        Title = title;
+        title = title;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
+    }
+
+    public VideoData getVideoData() {
+        return videoData;
+    }
+
+    public void setVideoData(VideoData videoData) {
+        this.videoData = videoData;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        id = id;
     }
 }
