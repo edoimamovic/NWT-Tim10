@@ -6,9 +6,11 @@ import com.etfmovies.videoinfo.repositories.VideoRepository;
 import com.etfmovies.videoinfo.repositories.ShowsRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class EtfMovieVideoInfoApplication {
 

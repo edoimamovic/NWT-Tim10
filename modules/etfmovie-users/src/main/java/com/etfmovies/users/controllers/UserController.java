@@ -36,4 +36,6 @@ public class UserController {
     public void changePassword(@RequestParam("email") String email, @RequestParam("password") String password){
         userService.changePassword(email, password);
     }
+
+
 }
