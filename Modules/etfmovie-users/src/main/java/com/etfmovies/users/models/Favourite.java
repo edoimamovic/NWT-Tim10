@@ -4,28 +4,28 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Favourites {
+public class Favourite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private String videoId;
+    private @NotNull Long videoId;
 
     @NotNull
     private Long user_id;
 
-    public Favourites(@NotNull String videoId) {
+    public Favourite(@NotNull Long videoId, @NotNull Long userId) {
         this.videoId = videoId;
+        this.user_id = userId;
     }
 
-    public Favourites() { }
+    public Favourite() { }
 
-    public String getVideoId() {
+    public @NotNull Long getVideoId() {
         return videoId;
     }
 
-    public void setVideoId(String videoId) {
+    public void setVideoId(@NotNull Long videoId) {
         this.videoId = videoId;
     }
 

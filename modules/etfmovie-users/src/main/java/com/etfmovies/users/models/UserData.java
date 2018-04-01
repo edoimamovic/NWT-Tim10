@@ -41,10 +41,10 @@ public class UserData {
     private Long role_id;
 
     @OneToMany(mappedBy = "user_id")
-    private List<Reviews> reviews;
+    private List<Review> reviews;
 
     @OneToMany(mappedBy = "user_id")
-    private List<Favourites> favourites;
+    private List<Favourite> favourites;
 
     public UserData(){ }
 
@@ -88,19 +88,19 @@ public class UserData {
         this.email = email;
     }
 
-    public List<Reviews> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Reviews> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
-    public List<Favourites> getFavourites() {
+    public List<Favourite> getFavourites() {
         return favourites;
     }
 
-    public void setFavourites(List<Favourites> favourites) {
+    public void setFavourites(List<Favourite> favourites) {
         this.favourites = favourites;
     }
 
