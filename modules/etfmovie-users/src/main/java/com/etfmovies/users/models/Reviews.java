@@ -2,6 +2,7 @@ package com.etfmovies.users.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Reviews {
@@ -10,6 +11,7 @@ public class Reviews {
     private Long id;
 
     @NotNull
+    @Size(min = 0, max = 1000)
     private String review;
 
     @NotNull

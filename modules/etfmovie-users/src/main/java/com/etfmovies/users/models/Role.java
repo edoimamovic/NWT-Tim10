@@ -2,6 +2,7 @@ package com.etfmovies.users.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,9 +12,11 @@ public class Role {
     private Long id;
 
     @NotNull
+    @Size(min = 2, max = 50)
     private String roleName;
 
     @NotNull
+    @Size(min = 0, max = 250)
     private String description;
 
     @OneToMany(mappedBy = "role_id")

@@ -2,6 +2,10 @@ package com.etfmovies.users.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,15 +15,23 @@ public class UserData {
     private Long id;
 
     @NotNull
+    @Size(min = 1, max = 50)
     private String firstName;
 
     @NotNull
+    @Size(min = 1, max = 50)
     private String lastName;
 
     @NotNull
+    @Past
+    private Date birthDate;
+
+    @NotNull
+    @Pattern(regexp="[.*@.*\\..*]")
     private String email;
 
     @NotNull
+    @Size(min = 5, max = 30)
     private String password;
 
     @NotNull
@@ -42,9 +54,10 @@ public class UserData {
         this.email = email;
     }
 
-    public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull String email, @NotNull String password, @NotNull Long role_id) {
+    public UserData(@NotNull String firstName, @NotNull String lastname, @NotNull Date birthDate, @NotNull String email, @NotNull String password, @NotNull Long role_id) {
         this.firstName = firstName;
         this.lastName = lastname;
+        this.birthDate = birthDate;
         this.email = email;
         this.password = password;
         this.isActive = false;
@@ -113,5 +126,13 @@ public class UserData {
 
     public void setRole_id(Long role_id) {
         this.role_id = role_id;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }
