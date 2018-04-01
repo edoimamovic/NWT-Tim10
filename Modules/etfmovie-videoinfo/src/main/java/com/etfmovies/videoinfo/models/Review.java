@@ -2,6 +2,8 @@ package com.etfmovies.videoinfo.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -11,9 +13,11 @@ public class Review {
     private Long id;
     
     @NotNull
+	@Size(min=10, max = 1000)
     private String reviewText;
 
     @NotNull
+	@Past
     private Date date;
 
     @ManyToOne

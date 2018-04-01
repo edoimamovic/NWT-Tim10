@@ -2,6 +2,7 @@ package com.etfmovies.videoinfo.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -10,6 +11,7 @@ public class Category {
     private Long id;
 
     @NotNull
+	@Size(min = 1, max = 20 )
     private String categoryName;
 
     public String getCategoryName() {

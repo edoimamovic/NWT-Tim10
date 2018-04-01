@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Past;
+
 import java.util.Date;
 
 @Entity
@@ -21,12 +24,14 @@ public class Video {
     }
 
     @NotNull
+	@Size(min=0, max = 250)
     private String title;
 
     @NotNull
     private Long uploadedBy;
 
     @NotNull
+	@Past
     private Date uploadDate;
 
     @OneToOne(mappedBy = "video", orphanRemoval = true)
