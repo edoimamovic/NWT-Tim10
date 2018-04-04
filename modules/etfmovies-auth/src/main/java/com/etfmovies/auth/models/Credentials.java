@@ -2,6 +2,8 @@ package com.etfmovies.auth.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 @Entity
 public class Credentials {
@@ -10,12 +12,15 @@ public class Credentials {
     private Long id;
 
     @NotNull
+    @Size(min = 0, max = 30)
     private String userName;
 
     @NotNull
+    @Size(min = 0, max = 30)
     private String password;
 
     @NotNull
+    @Size(min = 0, max = 1000)
     private String token;
 
     @NotNull
