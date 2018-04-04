@@ -10,6 +10,14 @@ import java.util.List;
 
 @Entity
 public class UserData {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +35,7 @@ public class UserData {
     private Date birthDate;
 
     @NotNull
-    @Pattern(regexp="[.*@.*\\..*]")
+    @Pattern(regexp=".*@.*\\..*")
     private String email;
 
     @NotNull

@@ -8,9 +8,11 @@ import com.etfmovies.users.repositories.ReviewRepository;
 import com.etfmovies.users.repositories.UserDataRepository;
 import com.etfmovies.users.service_interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserService implements IUserService {
@@ -26,18 +28,23 @@ public class UserService implements IUserService {
 
 
     @Override
-    public void registerUser(UserData userData) {
-        userDataRepository.save(userData);
+    public UserData registerUser(UserData userData) {
+        return userDataRepository.save(userData);
     }
 
     @Override
     public UserData getUserDataByUserId(Long userId) {
-        return userDataRepository.findById(userId).get();
+        try{
+            return userDataRepository.findById(userId).get();
+        }
+        catch (NoSuchElementException ex){
+            throw new NoSuchElementException("No user with the provided Id.");
+        }
     }
 
     @Override
-    public void updateUserData(UserData userData) {
-        userDataRepository.save(userData);
+    public UserData updateUserData(UserData userData) {
+        return userDataRepository.save(userData);
     }
 
     @Override
