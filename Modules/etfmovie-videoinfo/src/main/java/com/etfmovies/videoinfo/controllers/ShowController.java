@@ -5,6 +5,8 @@ import com.etfmovies.videoinfo.models.Video;
 import com.etfmovies.videoinfo.services.ShowsService;
 import com.etfmovies.videoinfo.services.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,14 +23,22 @@ public class ShowController {
     private ShowsService showsService;
 
     @RequestMapping(path="/episodes")
-    List<Episode> Episodes(Long id)
+    ResponseEntity Episodes(Long id)
     {
-        return showsService.getEpisodes(id);
+        if (id < 0 || id == null){
+            return new ResponseEntity("Id must be provided as a positive integer.", HttpStatus.BAD_REQUEST);
+        }
+
+        return ResponseEntity.ok().body(showsService.getEpisodes(id));
     }
 
     @RequestMapping(path="/season")
-    List<Episode> Episodes(Long id, int season)
+    ResponseEntity Episodes(Long id, int season)
     {
-        return showsService.getEpisodes(id, season);
+        if (id < 0 || id == null){
+            return new ResponseEntity("Id must be provided as a positive integer.", HttpStatus.BAD_REQUEST);
+        }
+
+        return ResponseEntity.ok().body(showsService.getEpisodes(id, season));
     }
 }

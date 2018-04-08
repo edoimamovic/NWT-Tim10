@@ -6,6 +6,7 @@ import com.etfmovies.videoinfo.repositories.ShowsRepository;
 import com.etfmovies.videoinfo.repositories.VideoRepository;
 import com.etfmovies.videoinfo.service_interfaces.IShowsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,11 +25,20 @@ public class ShowsService implements IShowsService {
 
     @Override
     public List<Episode> getEpisodes(Long showId, int season) {
-        return epRepository.findAllByShowIdAndSeason(showId, season);
+        try{
+            return epRepository.findAllByShowIdAndSeason(showId, season);
+        }
+        catch (EmptyResultDataAccessException ex){
+            throw new EmptyResultDataAccessException("No show the with provided Id.", 1);
+        }
     }
 
     @Override
     public List<Episode> getEpisodes(Long showId) {
-        return epRepository.findAllByShowId(showId);
+        try {
+            return epRepository.findAllByShowId(showId);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new EmptyResultDataAccessException("No show the with provided Id.", 1);
+        }
     }
 }
