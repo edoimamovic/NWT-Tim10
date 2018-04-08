@@ -18,14 +18,13 @@ public class Credentials {
     @NotNull
     private String token;
 
-    @NotNull
     private Boolean isActive;
 
-    public Credentials(@NotNull String userName, @NotNull String password, @NotNull String token, @NotNull Boolean isActive) {
+    public Credentials(@NotNull String userName, @NotNull String password, @NotNull String token) {
         this.userName = userName;
         this.password = password;
         this.token = token;
-        this.isActive = isActive;
+        this.isActive = true;
     }
 
     public String getUserName() {

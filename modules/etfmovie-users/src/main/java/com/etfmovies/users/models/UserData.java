@@ -1,10 +1,7 @@
 package com.etfmovies.users.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class UserData {
     private Date birthDate;
 
     @NotNull
-    @Pattern(regexp="[.*@.*\\..*]")
+    @Email
     private String email;
 
     @NotNull
