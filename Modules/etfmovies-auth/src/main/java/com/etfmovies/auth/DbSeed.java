@@ -1,21 +1,24 @@
 package com.etfmovies.auth;
 
-import com.etfmovies.auth.models.Credentials;
-import com.etfmovies.auth.repositories.CredentialsRepository;
+import com.etfmovies.auth.models.ApplicationUser;
+import com.etfmovies.auth.repositories.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class DbSeed {
-    private CredentialsRepository credentialsRepository;
+    private ApplicationUserRepository applicationUserRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public DbSeed(CredentialsRepository credentialsRepository) {
-        this.credentialsRepository = credentialsRepository;
+    public DbSeed(ApplicationUserRepository applicationUserRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.applicationUserRepository = applicationUserRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @EventListener
@@ -24,10 +27,10 @@ public class DbSeed {
     }
 
     private void seedRolesTable(){
-        List<Credentials> roles = credentialsRepository.findAll();
+        ApplicationUser usr = applicationUserRepository.findByUsername("admin");
 
-        if(roles == null || roles.size() <= 0){
-            credentialsRepository.save(new Credentials("admin", "password", "test"));
+        if(usr == null){
+            applicationUserRepository.save(new ApplicationUser("admin", bCryptPasswordEncoder.encode("password")));
         }
     }
 }
