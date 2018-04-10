@@ -8,8 +8,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class DbSeed {
     private ApplicationUserRepository applicationUserRepository;
@@ -22,14 +20,14 @@ public class DbSeed {
     }
 
     @EventListener
-    public void Seed(ContextRefreshedEvent event){
+    public void Seed(ContextRefreshedEvent event) {
         seedRolesTable();
     }
 
-    private void seedRolesTable(){
+    private void seedRolesTable() {
         ApplicationUser usr = applicationUserRepository.findByUsername("admin");
 
-        if(usr == null){
+        if (usr == null) {
             applicationUserRepository.save(new ApplicationUser("admin", bCryptPasswordEncoder.encode("password")));
         }
     }

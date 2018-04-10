@@ -11,13 +11,13 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
-	@Size(min=10, max = 1000)
+    @Size(min = 10, max = 1000)
     private String reviewText;
 
     @NotNull
-	@Past
+    @Past
     private Date date;
 
     @ManyToOne
@@ -65,6 +65,6 @@ public class Review {
         this.reviewerId = reviewerId;
     }
 
-    public Review(){
+    public Review() {
     }
 }

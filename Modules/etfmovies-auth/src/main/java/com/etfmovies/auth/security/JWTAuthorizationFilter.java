@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.etfmovies.auth.security.SecurityConstants.HEADER_STRING;
-import static com.etfmovies.auth.security.SecurityConstants.TOKEN_PREFIX;
-import static com.etfmovies.auth.security.SecurityConstants.SECRET;
+import static com.etfmovies.auth.security.SecurityConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

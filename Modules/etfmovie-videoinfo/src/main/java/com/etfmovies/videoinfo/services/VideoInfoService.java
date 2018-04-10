@@ -21,21 +21,19 @@ public class VideoInfoService implements IVideoInfoService {
 
     @Override
     public Boolean deleteVideo(Long videoId) {
-        try{
+        try {
             videoRepository.deleteById(videoId);
-        }
-        catch (EmptyResultDataAccessException ex){
+        } catch (EmptyResultDataAccessException ex) {
             throw new EmptyResultDataAccessException("No video with provided Id.", 1);
         }
-         return true;
+        return true;
     }
 
     @Override
     public Video getInfo(Long videoId) {
-        try{
+        try {
             return videoRepository.findById(videoId).get();
-        }
-        catch (EmptyResultDataAccessException ex){
+        } catch (EmptyResultDataAccessException ex) {
             throw new EmptyResultDataAccessException("No video with provided Id.", 1);
         }
     }

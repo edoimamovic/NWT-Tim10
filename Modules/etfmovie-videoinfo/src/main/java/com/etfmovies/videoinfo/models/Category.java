@@ -1,6 +1,9 @@
 package com.etfmovies.videoinfo.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -11,7 +14,7 @@ public class Category {
     private Long id;
 
     @NotNull
-	@Size(min = 1, max = 20 )
+    @Size(min = 1, max = 20)
     private String categoryName;
 
     public String getCategoryName() {
@@ -26,5 +29,6 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public Category(){}
+    public Category() {
+    }
 }

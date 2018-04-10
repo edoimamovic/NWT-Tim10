@@ -1,6 +1,9 @@
 package com.etfmovies.videostream.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,7 +15,7 @@ public class Video {
     private Long id;
 
     @NotNull
-	@Size(min=0,max =100000)
+    @Size(min = 0, max = 100000)
     private String path;
 
     public String getPath() {

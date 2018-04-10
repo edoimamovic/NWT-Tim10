@@ -3,10 +3,10 @@ package com.etfmovies.videoinfo.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class VideoData {
@@ -39,17 +39,17 @@ public class VideoData {
     }
 
     @NotNull
-	@Min(1)
-	@Max(1000)
+    @Min(1)
+    @Max(1000)
     private Integer length;
 
     @NotNull
-	@Min(16)
-	@Max(11200000)
+    @Min(16)
+    @Max(11200000)
     private Integer bitRate;
 
     @NotNull
-	@Size(min=0, max = 100)
+    @Size(min = 0, max = 100)
     private String format;
 
     public Video getVideo() {
@@ -76,10 +76,10 @@ public class VideoData {
     }
 
     @NotNull
-	@Size(min = 0, max = 1000000)
+    @Size(min = 0, max = 1000000)
     private String diskPath;
 
-    public VideoData(){
+    public VideoData() {
     }
 
     public VideoData(@NotNull Integer length, @NotNull Integer bitRate, @NotNull String format, @NotNull Video video, @NotNull String diskPath) {

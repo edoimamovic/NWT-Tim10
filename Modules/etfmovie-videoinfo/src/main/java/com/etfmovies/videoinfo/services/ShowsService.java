@@ -25,10 +25,9 @@ public class ShowsService implements IShowsService {
 
     @Override
     public List<Episode> getEpisodes(Long showId, int season) {
-        try{
+        try {
             return epRepository.findAllByShowIdAndSeason(showId, season);
-        }
-        catch (EmptyResultDataAccessException ex){
+        } catch (EmptyResultDataAccessException ex) {
             throw new EmptyResultDataAccessException("No show the with provided Id.", 1);
         }
     }

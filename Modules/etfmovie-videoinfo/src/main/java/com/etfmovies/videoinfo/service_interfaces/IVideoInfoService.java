@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IVideoInfoService {
     Video getInfo(Long videoId);
+
     Boolean deleteVideo(Long videoId);
+
     List<Video> searchVideos(String query);
 }

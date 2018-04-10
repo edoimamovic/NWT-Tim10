@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IShowsService {
     List<Episode> getEpisodes(Long showId);
+
     List<Episode> getEpisodes(Long showId, int season);
 }

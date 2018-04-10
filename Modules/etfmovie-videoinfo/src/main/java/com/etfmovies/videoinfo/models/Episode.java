@@ -1,9 +1,9 @@
 package com.etfmovies.videoinfo.models;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 @Entity
 public class Episode {
     @Id
@@ -11,11 +11,11 @@ public class Episode {
     private Long id;
 
     @NotNull
-	@Min(1)
+    @Min(1)
     private Integer season;
 
     @NotNull
-	@Min(1)
+    @Min(1)
     private Integer number;
 
     @ManyToOne
@@ -79,5 +79,6 @@ public class Episode {
         this.show = show;
     }
 
-    public Episode(){}
+    public Episode() {
+    }
 }

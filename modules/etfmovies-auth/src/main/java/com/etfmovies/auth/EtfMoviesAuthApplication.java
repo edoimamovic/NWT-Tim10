@@ -15,17 +15,17 @@ public class EtfMoviesAuthApplication {
     @Value("${spring.topicexchange.name}")
     private String topicExchangeName;
 
-	@Bean
-	TopicExchange topicExchange() {
-		return new TopicExchange(topicExchangeName);
-	}
+    @Bean
+    TopicExchange topicExchange() {
+        return new TopicExchange(topicExchangeName);
+    }
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(EtfMoviesAuthApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EtfMoviesAuthApplication.class, args);
+    }
 }

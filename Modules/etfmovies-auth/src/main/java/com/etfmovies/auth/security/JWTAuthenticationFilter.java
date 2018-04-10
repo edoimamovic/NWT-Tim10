@@ -7,7 +7,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,10 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.etfmovies.auth.security.SecurityConstants.EXPIRATION_TIME;
-import static com.etfmovies.auth.security.SecurityConstants.HEADER_STRING;
-import static com.etfmovies.auth.security.SecurityConstants.TOKEN_PREFIX;
-import static com.etfmovies.auth.security.SecurityConstants.SECRET;
+import static com.etfmovies.auth.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -72,7 +68,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }
 
-    private void notifyUserLogin(String token, String username){
+    private void notifyUserLogin(String token, String username) {
         String routingKey = "auth.user_logged_in";
         String message = "User logged in: " + username + " | " + token;
         rabbitTemplate.convertAndSend(topicExchange.getName(), routingKey, message);
