@@ -22,6 +22,8 @@ public class VideoInfoController {
         if (id < 0) {
             return new ResponseEntity("Id must be provided as a positive integer.", HttpStatus.BAD_REQUEST);
         }
+
+
         return ResponseEntity.ok().body(videoInfoService.getInfo(id));
     }
 
@@ -31,6 +33,15 @@ public class VideoInfoController {
             return new ResponseEntity("Search string must be provided.", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity(videoInfoService.searchVideos(string), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/uploadedBy")
+    ResponseEntity UploadedBy(Long id) {
+        if (id < 0) {
+            return new ResponseEntity("Id must be provided as a positive integer.", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity(videoInfoService.getUsersVideos(id), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/delete", method = RequestMethod.DELETE)

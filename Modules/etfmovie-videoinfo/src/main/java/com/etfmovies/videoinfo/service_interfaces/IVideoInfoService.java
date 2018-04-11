@@ -10,4 +10,6 @@ public interface IVideoInfoService {
     Boolean deleteVideo(Long videoId);
 
     List<Video> searchVideos(String query);
+
+    List<Video> getUsersVideos(Long userId);
 }

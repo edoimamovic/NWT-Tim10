@@ -11,5 +11,7 @@ public interface VideoRepository extends CrudRepository<Video, Long> {
 
     List<Video> findByTitleContaining(String title);
 
+    List<Video> findVideosByUploadedBy(Long id);
+
     void deleteById(Long id);
 }

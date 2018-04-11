@@ -37,6 +37,8 @@ public class Video {
     @JsonManagedReference
     private VideoData videoData;
 
+    @Transient
+    private String url;
 
     public Long getUploadedBy() {
         return uploadedBy;
@@ -77,5 +79,13 @@ public class Video {
 
     public void setId(Long id) {
         id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
