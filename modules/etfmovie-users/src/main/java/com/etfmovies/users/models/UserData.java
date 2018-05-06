@@ -28,7 +28,6 @@ public class UserData {
     private String lastName;
 
     @NotNull
-    @Past
     private Date birthDate;
 
     @NotNull

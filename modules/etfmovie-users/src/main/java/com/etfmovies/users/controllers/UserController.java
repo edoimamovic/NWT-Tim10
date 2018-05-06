@@ -11,7 +11,6 @@ import javax.validation.ConstraintViolationException;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path="/user")
 public class UserController {
     @Autowired
     private UserService userService;
