@@ -23,7 +23,7 @@ public class Show {
     }
 
     public Show(@NotNull String title) {
-        title = title;
+        this.title = title;
     }
 
     public Show() {

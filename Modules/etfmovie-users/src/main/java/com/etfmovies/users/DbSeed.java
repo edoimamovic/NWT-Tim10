@@ -48,6 +48,7 @@ public class DbSeed {
 
             userDataRepository.save(new UserData("john1", "doe1", new Date(1995,2,2), "test@email.com" ,"guestuser", guestUserRole.getId()));
             userDataRepository.save(new UserData("john2", "doe2", new Date(1995,2,2), "test2@email.com" ,"admin", registeredUserRole.getId()));
+            userDataRepository.save(new UserData("john3", "doe2", new Date(1995,2,2), "test2@email.com" ,"admin", registeredUserRole.getId()));
         }
     }
 }

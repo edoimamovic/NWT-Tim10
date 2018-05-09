@@ -30,7 +30,7 @@ public class Video {
     private Long uploadedBy;
 
     @NotNull
-    @Past
+    //@Past
     private Date uploadDate;
 
     @OneToOne(mappedBy = "video", orphanRemoval = true)
@@ -60,7 +60,7 @@ public class Video {
     }
 
     public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate) {
-        title = title;
+        this.title = title;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
     }

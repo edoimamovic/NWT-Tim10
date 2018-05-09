@@ -18,6 +18,8 @@ public class Video {
     @Size(min = 0, max = 100000)
     private String path;
 
+    public Video(String t_path){this.path=t_path;}
+
     public String getPath() {
         return path;
     }
