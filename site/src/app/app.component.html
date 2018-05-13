@@ -1,0 +1,33 @@
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-brand">
+        <a class="navbar-item">
+            Netflix
+        </a>
+        </div>
+
+        <div id="navbar" class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item">
+            Browse videos
+            </a>
+            <a class="navbar-item" [routerLink]="['/signin']" *ngIf="!authService.isAuthenticated">
+            Login
+            </a>
+            <a class="navbar-item" (click)="authService.logout()">
+            Logout
+            </a>
+        </div>
+        </div>
+    </div>
+</nav>
+  
+<router-outlet></router-outlet>
+
+<footer class="footer">
+    <div class="container has-text-centered">
+        <div class="content">
+            NWT 2018
+        </div>
+    </div>
+</footer>
