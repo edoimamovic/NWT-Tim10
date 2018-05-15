@@ -13,6 +13,8 @@ import { BrowseVideosComponent } from './browse-videos/browse-videos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import * as jwt_decode from '../../node_modules/jwt-decode';
+import { VideoDetailsComponent } from './video-details/video-details.component';
+import { SafePipe } from './safe.pipe';
 
 
 const appRoutes: Routes = [
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
     redirectTo: '/browse',
     pathMatch: 'full'
   },
+  { path: 'video/:id', component: VideoDetailsComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -35,7 +38,9 @@ const appRoutes: Routes = [
     AppComponent,
     SigninComponent,
     PageNotFoundComponent,
-    BrowseVideosComponent
+    BrowseVideosComponent,
+    VideoDetailsComponent,
+    SafePipe
   ],
   imports: [
     RouterModule.forRoot(

@@ -11,11 +11,9 @@ public class Episode {
     private Long id;
 
     @NotNull
-    @Min(1)
     private Integer season;
 
     @NotNull
-    @Min(1)
     private Integer number;
 
     @ManyToOne

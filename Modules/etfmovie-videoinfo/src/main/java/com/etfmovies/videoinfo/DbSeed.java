@@ -45,6 +45,8 @@ public class DbSeed {
              _videoRepository.save( new Video("title3" , 3L, new GregorianCalendar(2017,2,4).getTime()));
              _videoRepository.save( new Video("title4" , 4L, new GregorianCalendar(2017,2,4).getTime()));
              _videoRepository.save( new Video("title5" , 5L, new GregorianCalendar(2017,2,4).getTime()));
+
+
          }
     }
     private void seedCategoryTable(){

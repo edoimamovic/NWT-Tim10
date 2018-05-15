@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 export class SigninComponent implements OnInit {
   private username: string;
   private password: string;
+  private message: string;
 
   constructor(private authService: AuthService) { }
 
@@ -16,7 +17,13 @@ export class SigninComponent implements OnInit {
   }
 
   private login(): void {
-    this.authService.login(this.username, this.password);
+    this.authService.login(this.username, this.password).subscribe(resp => {
+      if (resp.errorMessage) {
+        this.message = resp.errorMessage;
+      } else {
+        this.message = '';
+      }
+    });
   }
 
 }

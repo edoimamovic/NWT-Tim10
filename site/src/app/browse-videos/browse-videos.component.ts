@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VideoService } from '../video.service';
+import { Video } from '../video';
 
 @Component({
   selector: 'app-browse-videos',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./browse-videos.component.css']
 })
 export class BrowseVideosComponent implements OnInit {
+  private searchString = '';
+  private videos: Array<Video>;
 
-  constructor() { }
+  private search() {
+    this.videoService.search(this.searchString).subscribe(resp => {
+      this.videos = resp;
+    });
+  }
+
+  constructor(private videoService: VideoService) { }
 
   ngOnInit() {
+    this.search();
   }
 
 }
