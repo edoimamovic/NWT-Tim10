@@ -18,7 +18,10 @@ public class Video {
     @Size(min = 0, max = 100000)
     private String path;
 
-    public Video(String t_path){this.path=t_path;}
+    @NotNull
+    private Integer videoId;
+
+    public Video(String t_path, Integer videoId ){this.path=t_path; this.videoId = videoId;}
 
     public String getPath() {
         return path;
@@ -26,6 +29,14 @@ public class Video {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Integer getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(Integer videoId) {
+        this.videoId = videoId;
     }
 
     public Video(){}

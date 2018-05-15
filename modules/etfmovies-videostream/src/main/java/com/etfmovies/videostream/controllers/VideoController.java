@@ -17,7 +17,7 @@ public class VideoController {
     private VideoService videoService;
 
     @RequestMapping(value = "/getUrl")
-    public ResponseEntity getVideoUrl(@RequestParam("id") Long id) {
+    public ResponseEntity getVideoUrl(@RequestParam("id") Integer id) {
         if (id == null || id <= 0) {
             return new ResponseEntity("Id must be provided as a positive integer.", HttpStatus.BAD_REQUEST);
         }

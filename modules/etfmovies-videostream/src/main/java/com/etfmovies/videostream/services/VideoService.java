@@ -11,7 +11,7 @@ public class VideoService implements IVideoService {
     private VideoRepository videoRepository;
 
     @Override
-    public String serveVideo(Long videoId) {
-        return videoRepository.findById(videoId).get().getPath();
+    public String serveVideo(Integer videoId) {
+        return videoRepository.findByVideoId(videoId).getPath();
     }
 }

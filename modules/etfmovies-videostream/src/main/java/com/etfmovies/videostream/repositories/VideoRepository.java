@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface VideoRepository extends CrudRepository<Video, Long> {
     List<Video> findAll();
-//    Video findById(Long videoId);
+    Video findByVideoId(Integer videoId);
+    //    Video findById(Long videoId);
 }

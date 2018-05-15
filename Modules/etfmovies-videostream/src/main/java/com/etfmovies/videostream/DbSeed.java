@@ -29,7 +29,14 @@ public class DbSeed {
         List<Video> videos = videoRepository.findAll();
 
         if(videos == null || videos.size() <= 0){
-            videoRepository.save (new Video("http//"));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 1));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 2));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 3));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 4));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 5));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 6));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 7));
+            videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 8));
             }
     }
 
