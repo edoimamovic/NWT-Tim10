@@ -1,14 +1,14 @@
 <nav class="navbar">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item">
+            <a class="navbar-item" [routerLink]="['/']">
                 Netflix
             </a>
         </div>
 
         <div id="navbar" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item">
+                <a class="navbar-item" [routerLink]="['/']">
                 Browse videos
                 </a>
                 <a class="navbar-item" [routerLink]="['/signin']" *ngIf="!authService.isAuthenticated">
