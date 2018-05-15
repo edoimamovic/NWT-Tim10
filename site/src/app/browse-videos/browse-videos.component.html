@@ -4,7 +4,9 @@
   <div class="columns">
     <div *ngFor="let video of videos; let index = index" class="column is-4">
         <p>
-          <a [routerLink]="['/video', video.id]">{{video.title}}</a>
+          <a [routerLink]="['/video', video.id]">
+            <img [src]="video.thumbnailUrl"/>
+            {{video.title}}</a>
         </p>
     </div>
   </div>

@@ -40,11 +40,11 @@ public class DbSeed {
     private void seedVideosTable(){
         List<Video> videos =_videoRepository.findAll();
          if(videos == null || videos.size() <= 0){
-             _videoRepository.save( new Video("title1" , 1L, new GregorianCalendar(2017,2,4).getTime()));
-             _videoRepository.save( new Video("title2" , 2L, new GregorianCalendar(2017,2,4).getTime()));
-             _videoRepository.save( new Video("title3" , 3L, new GregorianCalendar(2017,2,4).getTime()));
-             _videoRepository.save( new Video("title4" , 4L, new GregorianCalendar(2017,2,4).getTime()));
-             _videoRepository.save( new Video("title5" , 5L, new GregorianCalendar(2017,2,4).getTime()));
+             _videoRepository.save( new Video("title1" , 1L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Fantastic-Beasts-and-Where-To-Find-Them-banner-200x200.jpg"));
+             _videoRepository.save( new Video("title2" , 2L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Kong-Skull-Island-trailer-2-200x200.jpg"));
+             _videoRepository.save( new Video("title3" , 3L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Moana-banner-200x200.jpg"));
+             _videoRepository.save( new Video("title4" , 4L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Valerian-and-the-City-of-a-Thousand-Planets-01-200x200.jpg"));
+             _videoRepository.save( new Video("title5" , 5L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Vampire-Lestat-200x200.jpg"));
 
 
          }

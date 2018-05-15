@@ -40,6 +40,16 @@ public class Video {
     @Transient
     private String url;
 
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    private String thumbnailUrl;
+
     public Long getUploadedBy() {
         return uploadedBy;
     }
@@ -59,10 +69,11 @@ public class Video {
     public Video() {
     }
 
-    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate) {
+    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl) {
         this.title = title;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public VideoData getVideoData() {

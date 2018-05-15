@@ -5,6 +5,7 @@ export class Video {
     public uploadDate: Date;
     public videoData: string;
     public url: string;
+    public thumbnailUrl: string;
 
     constructor(data) {
         if (data) {
@@ -14,6 +15,7 @@ export class Video {
             this.uploadDate = data.uploadDate;
             this.videoData = data.videoData;
             this.url = data.url;
+            this.thumbnailUrl = data.thumbnailUrl;
         }
     }
 }
