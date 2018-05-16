@@ -8,8 +8,11 @@ import { AuthService } from './auth.service';
 
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
+import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowseVideosComponent } from './browse-videos/browse-videos.component';
+import { ProfilePageComponent} from './profile-page/profile-page.component';
+import { ContactComponent} from './contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import * as jwt_decode from '../../node_modules/jwt-decode';
@@ -21,6 +24,9 @@ const appRoutes: Routes = [
   { path: 'signin',
     component: SigninComponent
   },
+   { path: 'register',
+    component: RegisterComponent
+  },
   { path: 'browse',
     component: BrowseVideosComponent
   },
@@ -29,6 +35,25 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'video/:id', component: VideoDetailsComponent },
+  
+  { path: 'profilepage',
+    component: ProfilePageComponent
+  },
+  {
+    path: '',
+    redirectTo: '/profilepage',
+     pathMatch: 'full'
+    
+  },
+    { path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: '',
+    redirectTo: '/contact',
+     pathMatch: 'full'
+    
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -40,6 +65,9 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     BrowseVideosComponent,
     VideoDetailsComponent,
+    ProfilePageComponent,
+    ContactComponent,
+    RegisterComponent,
     SafePipe
   ],
   imports: [
