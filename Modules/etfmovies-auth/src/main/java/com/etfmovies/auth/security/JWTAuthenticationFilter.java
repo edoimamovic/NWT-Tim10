@@ -75,5 +75,4 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         AuthMessage message = new AuthMessage(username, token);
         rabbitTemplate.convertAndSend(topicExchange.getName(), routingKey, message.toJSONString());
     }
-
 }

@@ -39,6 +39,4 @@ public class DbSeed {
             videoRepository.save (new Video("https://www.youtube.com/embed/tgbNymZ7vqY", 8));
             }
     }
-
-
 }

@@ -13,7 +13,7 @@ public class AuthEventSubscriber {
     @Autowired
     UserSessionService userSessionService;
 
-    @RabbitListener(queues = "auth-queue")
+    @RabbitListener(queues = "auth-queue-users")
     public void receive(String message) {
         AuthMessage authMessage = AuthMessage.fromJSONString(message);
         userSessionService.userLogOn(authMessage);
