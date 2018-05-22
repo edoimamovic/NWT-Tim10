@@ -10,27 +10,33 @@ public class ApplicationUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String username;
+    private String email;
     private String password;
+    private Long roleId;
 
     public ApplicationUser() {
     }
 
-    public ApplicationUser(String username, String password) {
-        this.username = username;
+    public ApplicationUser(String email, String password, Long roleId) {
+        this.email = email;
         this.password = password;
+        this.roleId = roleId;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -39,5 +45,13 @@ public class ApplicationUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

@@ -57,9 +57,5 @@ public class UserController {
 
         userService.changePassword(email, password);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
-
-
     }
-
-
 }

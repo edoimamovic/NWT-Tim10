@@ -25,10 +25,10 @@ public class DbSeed {
     }
 
     private void seedRolesTable() {
-        ApplicationUser usr = applicationUserRepository.findByUsername("admin");
+        ApplicationUser usr = applicationUserRepository.findByEmail("admin");
 
         if (usr == null) {
-            applicationUserRepository.save(new ApplicationUser("admin", bCryptPasswordEncoder.encode("password")));
+            applicationUserRepository.save(new ApplicationUser("admin@example.com", bCryptPasswordEncoder.encode("password"), 1l));
         }
     }
 }

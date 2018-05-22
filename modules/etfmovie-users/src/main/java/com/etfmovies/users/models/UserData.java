@@ -31,7 +31,6 @@ public class UserData {
     private Date birthDate;
 
     @NotNull
-
     @Email
     private String email;
 

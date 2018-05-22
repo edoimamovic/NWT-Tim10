@@ -20,12 +20,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
+        ApplicationUser applicationUser = applicationUserRepository.findByEmail(username);
+
         if (applicationUser == null) {
             throw new UsernameNotFoundException(username);
         }
 
         //TODO: Get user by username from users microservice, and change emptyList() with user role
-        return new User(applicationUser.getUsername(), applicationUser.getPassword(), emptyList());
+        return new User(applicationUser.getEmail(), applicationUser.getPassword(), emptyList());
     }
 }

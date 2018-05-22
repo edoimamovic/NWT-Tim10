@@ -1,6 +1,7 @@
 package com.etfmovies.auth.security;
 
 
+import com.etfmovies.auth.utils.AuthMessage;
 import com.etfmovies.auth.models.ApplicationUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
@@ -43,7 +44,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            creds.getUsername(),
+                            creds.getEmail(),
                             creds.getPassword(),
                             new ArrayList<>())
             );
@@ -70,7 +71,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private void notifyUserLogin(String token, String username) {
         String routingKey = "auth.user_logged_in";
-        String message = "User logged in: " + username + " | " + token;
-        rabbitTemplate.convertAndSend(topicExchange.getName(), routingKey, message);
+
+        AuthMessage message = new AuthMessage(username, token);
+        rabbitTemplate.convertAndSend(topicExchange.getName(), routingKey, message.toJSONString());
     }
+
 }
