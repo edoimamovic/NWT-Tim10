@@ -73,8 +73,8 @@ public class VideoInfoService implements IVideoInfoService {
             RestTemplate restTemplate = new RestTemplate();
 
             ResponseEntity<String> response = restTemplate.getForEntity(videoStreamUrl, String.class);
-
-            video.setUrl(response.getBody());
+            String userServiceUrl = "http://localhost:8081/user/get-info?id=" + video.getUploadedBy();
+            restTemplate = new RestTemplate();
 
             return video;
         }

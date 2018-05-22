@@ -26,8 +26,15 @@ public class Video {
     @Size(min = 0, max = 250)
     private String title;
 
+    @Size(min = 0, max = 1000)
+    private String description;
+
+
     @NotNull
     private Long uploadedBy;
+
+    @Transient
+    private String uploadedByUser;
 
     @NotNull
     //@Past
@@ -69,11 +76,12 @@ public class Video {
     public Video() {
     }
 
-    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl) {
+    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl, String description) {
         this.title = title;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
         this.thumbnailUrl = thumbnailUrl;
+        this.description = description;
     }
 
     public VideoData getVideoData() {
@@ -98,5 +106,21 @@ public class Video {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUploadedByUser() {
+        return uploadedByUser;
+    }
+
+    public void setUploadedByUser(String uploadedByUser) {
+        this.uploadedByUser = uploadedByUser;
     }
 }

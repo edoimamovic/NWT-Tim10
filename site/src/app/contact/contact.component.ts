@@ -13,10 +13,6 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
- 
-
-  private getusername():void{  }
-  private getpassword():void{}
-   
-   
+  private getusername(): void { }
+  private getpassword(): void { }
 }

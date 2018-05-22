@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  private username: string;
+  private email: string;
   private password: string;
   private message: string;
 
@@ -17,7 +17,7 @@ export class SigninComponent implements OnInit {
   }
 
   private login(): void {
-   this.authService.login(this.username, this.password).subscribe(resp => {
+   this.authService.login(this.email, this.password).subscribe(resp => {
       if (resp.errorMessage) {
         this.message = resp.errorMessage;
       } else {
