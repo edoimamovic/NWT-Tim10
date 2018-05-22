@@ -1,7 +1,13 @@
+<div class="container">
+<div class="example">
 <input [(ngModel)]="searchString" />
-<button (click)="search()">Search</button>
-<div class="section">
-  <div class="columns">
+<button type="submit"(click)="search()"><i class="fa fa-search"></i> </button>
+</div>
+<br>
+<br>
+<body>
+
+  <div class="columns col-7" style="float:left;">
     <div *ngFor="let video of videos; let index = index" class="column is-4">
         <p>
           <a [routerLink]="['/video', video.id]">
@@ -10,4 +16,5 @@
         </p>
     </div>
   </div>
+</body>
 </div>

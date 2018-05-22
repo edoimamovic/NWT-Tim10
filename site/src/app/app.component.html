@@ -1,22 +1,23 @@
 <nav class="navbar">
+
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item" [routerLink]="['/']">
-                Netflix
-            </a>
-        </div>
+           <div class = "slatki-naslov">
+            <a  [routerLink]="['/']"  class="navbar-left"><img  style="max-width:70px; margin-top: -15px;  margin-left: -30px; " src="/assets/images/cute-icon-png-32300.png" >Slatki Netflix</a>
+            
+        </div></div>
 
         <div id="navbar" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item" [routerLink]="['/']">
+                <a class="navbar-item " [routerLink]="['/']">
                 Browse videos
                 </a>
-                <a class="navbar-item" [routerLink]="['/signin']" *ngIf="!authService.isAuthenticated">
+                <a class="navbar-item " [routerLink]="['/signin']" *ngIf="!authService.isAuthenticated">
                 Login
                 </a>
                 <ng-container *ngIf="authService.isAuthenticated">
+                    <a class ="navbar-item " [routerLink]="['/profilepage']"> Profile</a>
                     <span class="navbar-item">Welcome, {{authService.username}}!</span>
-                    <a class ="navbar-item" [routerLink]="['/profilepage']"> Profile</a>
                     <a class="navbar-item" (click)="authService.logout()">                
                         Logout
                     </a>
@@ -24,20 +25,26 @@
             </div>
         </div>
     </div>
-</nav>
-  
+
+ </nav>
 <router-outlet></router-outlet>
 
+<!--Body-->
+<!--<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+
+</div>-->
 <footer class="footer">
-    <div class="container has-text-centered">
+ 
+    <div class="container has-text-centered move-down">
         <div class="content">
             NWT 2018
-        </div>
-    <br>
+        </div>  
+  </div>
+
     <div id = "footer-nav">
           <a class="navbar-item"[routerLink] ="['/contact']">
          Contact us!
           </a>
         </div> 
-    </div>
 </footer>

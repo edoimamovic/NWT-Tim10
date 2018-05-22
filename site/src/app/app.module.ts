@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
-import { RegisterComponent } from './register/register.component';
+//import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowseVideosComponent } from './browse-videos/browse-videos.component';
 import { ProfilePageComponent} from './profile-page/profile-page.component';
@@ -24,9 +24,14 @@ const appRoutes: Routes = [
   { path: 'signin',
     component: SigninComponent
   },
-   { path: 'register',
+  /* { path: 'register',
     component: RegisterComponent
   },
+   {
+    path: '',
+    redirectTo: '/register',
+     pathMatch: 'full' 
+ },*/
   { path: 'browse',
     component: BrowseVideosComponent
   },
@@ -67,7 +72,7 @@ const appRoutes: Routes = [
     VideoDetailsComponent,
     ProfilePageComponent,
     ContactComponent,
-    RegisterComponent,
+    //RegisterComponent,
     SafePipe
   ],
   imports: [

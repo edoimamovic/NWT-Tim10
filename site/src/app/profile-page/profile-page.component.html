@@ -1,13 +1,23 @@
 <p>
   
-<br>
-  This is your profile page.
-<br>
-<label for="userUsername">Username: </label>
-<a>{{authService.username}}</a><br>
-<label for="userPassword">change password here: </label>
+<body>
+
+<h2 style="text-align:center"></h2>
+
+<div class="card">
+  <img src="/assets/images/cute-icon-png-32300.png" alt="John" style="width:100%">
+  <label for="userUsername"></label>
+<a>Hello,{{authService.username}}!</a>
+  <div style="margin: 24px 0;">
+  <label for="userPassword">change password here: </label>
 <input id="userPassword" type="password">
+
+
+ </div>
+
 <button (click)="changepassword()">Change password</button>
 
+</div>
 
+</body>
 </p>

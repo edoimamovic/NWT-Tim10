@@ -1,8 +1,34 @@
 <div>
-  <input type="text" [(ngModel)]="username" />
-  <input type="password" [(ngModel)]="password" />
-  <button (click)="login()">Sign in</button>
-  <span>{{message}}</span>
 <br>
-Dont have account?<a  [routerLink]="['/register']">register here</a>
+  <body>
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Login</h1>
+           <br>
+			</div>
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="username" id="login-name" [(ngModel)]="username" >
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" id="login-pass"  [(ngModel)]="password" >
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<a class="btn btn-primary btn-large btn-block"  (click)="login()" >login</a>
+        <br>
+        <span>{{message}}</span>
+				<a class="login-link" href="#"></a>
+			</div>
+		</div>
+	</div>
+</body>
 </div>
+
+
+
+
+  
