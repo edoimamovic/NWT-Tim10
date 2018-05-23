@@ -19,6 +19,8 @@ import * as jwt_decode from '../../node_modules/jwt-decode';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { SafePipe } from './safe.pipe';
 import { AuthInterceptor } from './http.interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -73,7 +75,9 @@ const appRoutes: Routes = [
     VideoDetailsComponent,
     ProfilePageComponent,
     ContactComponent,
-    SafePipe
+    SafePipe,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule.forRoot(
