@@ -1,14 +1,21 @@
-<footer class="footer">
-
-  <div class="container has-text-centered move-down">
-    <div class="content">
-      NWT 2018
+<footer class="footer bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <ul class="list-unstyled">
+          <li class="float-lg-right">
+            <a href="#top">Back to top</a>
+          </li>
+          <li>
+            <a class="navbar-item" [routerLink]="['/contact']">
+              Contact us!
+            </a>
+          </li>
+        </ul>
+        <p>
+          NWT 2018
+        </p>
+      </div>
     </div>
-  </div>
-
-  <div id="footer-nav">
-    <a class="navbar-item" [routerLink]="['/contact']">
-      Contact us!
-    </a>
   </div>
 </footer>
