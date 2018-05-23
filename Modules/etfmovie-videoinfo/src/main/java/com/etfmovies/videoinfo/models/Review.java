@@ -1,9 +1,9 @@
 package com.etfmovies.videoinfo.models;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -16,21 +16,30 @@ public class Review {
     @Size(min = 10, max = 1000)
     private String reviewText;
 
+    @Min(1)
+    @Max(5)
+    @NotNull
+    private Integer reviewRating;
+
     @NotNull
     @Past
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "videoId")
+    @JoinColumn(name = "video_id")
     @NotNull
     private Video video;
 
     @NotNull
     private Long reviewerId;
 
-    public Review(@NotNull String lastname, @NotNull Date date, Long reviewerId) {
+    public Review() {
+    }
+
+    public Review(@NotNull String lastname, @NotNull Date date, Long reviewerId, Integer reviewRating) {
         this.reviewText = lastname;
         this.date = date;
+        this.reviewRating = reviewRating;
     }
 
     public String getReviewText() {
@@ -65,6 +74,11 @@ public class Review {
         this.reviewerId = reviewerId;
     }
 
-    public Review() {
+    public Integer getReviewRating() {
+        return reviewRating;
+    }
+
+    public void setReviewRating(Integer reviewRating) {
+        this.reviewRating = reviewRating;
     }
 }

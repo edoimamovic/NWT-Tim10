@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Video } from './video';
-
+import { Video } from 'src/app/shared/video';
 @Injectable({
   providedIn: 'root'
 })

@@ -3,7 +3,8 @@ export class Video {
     public title: string;
     public uploadedBy: number;
     public uploadDate: Date;
-    public videoData: string;
+    public videoData: object;
+    public category: object;
     public url: string;
     public thumbnailUrl: string;
     public description: string;
@@ -14,6 +15,7 @@ export class Video {
             this.title = data.title;
             this.uploadedBy = data.uploadedBy;
             this.uploadDate = data.uploadDate;
+            this.category = data.category;
             this.videoData = data.videoData;
             this.url = data.url;
             this.thumbnailUrl = data.thumbnailUrl;

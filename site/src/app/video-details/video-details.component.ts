@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
-import { Video } from '../video';
+import { Video } from 'src/app/shared/video';
 
 @Component({
   selector: 'app-video-details',

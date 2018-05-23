@@ -7,20 +7,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        title = title;
-    }
 
     @NotNull
     @Size(min = 0, max = 250)
@@ -29,7 +22,6 @@ public class Video {
     @Size(min = 0, max = 1000)
     private String description;
 
-
     @NotNull
     private Long uploadedBy;
 
@@ -37,51 +29,40 @@ public class Video {
     private String uploadedByUser;
 
     @NotNull
-    //@Past
     private Date uploadDate;
 
     @OneToOne(mappedBy = "video", orphanRemoval = true)
     @JsonManagedReference
     private VideoData videoData;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     @Transient
     private String url;
 
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
-    }
-
-    public void setThumbnailUrl(String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
-    }
-
     private String thumbnailUrl;
 
-    public Long getUploadedBy() {
-        return uploadedBy;
-    }
-
-    public void setUploadedBy(Long uploadedBy) {
-        uploadedBy = uploadedBy;
-    }
-
-    public Date getUploadDate() {
-        return uploadDate;
-    }
-
-    public void setUploadDate(Date uploadDate) {
-        uploadDate = uploadDate;
-    }
 
     public Video() {
     }
 
-    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl, String description) {
+    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl, String description, Category category) {
         this.title = title;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
         this.thumbnailUrl = thumbnailUrl;
         this.description = description;
+        this.category = category;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        title = title;
     }
 
     public VideoData getVideoData() {
@@ -122,5 +103,37 @@ public class Video {
 
     public void setUploadedByUser(String uploadedByUser) {
         this.uploadedByUser = uploadedByUser;
+    }
+
+    public Long getUploadedBy() {
+        return uploadedBy;
+    }
+
+    public void setUploadedBy(Long uploadedBy) {
+        uploadedBy = uploadedBy;
+    }
+
+    public Date getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(Date uploadDate) {
+        uploadDate = uploadDate;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

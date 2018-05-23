@@ -20,36 +20,65 @@ public class DbSeed {
     private EpisodesRepository _episodesRepository;
     private ShowsRepository _showsRepository;
     private CategoryRepository _categoryRepository;
+    private VideoDataRepository videoDataRepository;
+    private ReviewRepository reviewRepository;
 
     @Autowired
-    public DbSeed(VideoRepository videoRepository, EpisodesRepository episodesRepository, CategoryRepository categoryRepository, ShowsRepository showsRepository){
+    public DbSeed(VideoRepository videoRepository, EpisodesRepository episodesRepository, CategoryRepository categoryRepository, ShowsRepository showsRepository, VideoDataRepository videoDataRepository, ReviewRepository reviewRepository){
         _videoRepository =videoRepository;
         _episodesRepository=episodesRepository;
         _showsRepository=showsRepository;
         _categoryRepository=categoryRepository;
+        this.videoDataRepository = videoDataRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     @EventListener
     public void Seed(ContextRefreshedEvent event){
         seedCategoryTable();
         seedVideosTable();
+        seedVideoDataTable();
+        seedReviewsTable();
         seedShowsTable();
         seedEpisodesTable();
     }
 
     private void seedVideosTable(){
         List<Video> videos =_videoRepository.findAll();
-         if(videos == null || videos.size() <= 0){
+        if(videos == null || videos.size() <= 0){
+             Category category = _categoryRepository.findByCategoryName("Action");
              String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus laoreet luctus. Donec tempus, turpis a ornare blandit, sapien justo volutpat enim, ac vehicula ante massa ut magna. Mauris id condimentum magna, ut faucibus tortor. Phasellus nec risus ut mi placerat commodo. Vivamus blandit viverra dolor vel luctus. Mauris eu mollis leo,";
-             _videoRepository.save( new Video("title1" , 1L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Fantastic-Beasts-and-Where-To-Find-Them-banner-200x200.jpg", loremIpsum));
-             _videoRepository.save( new Video("title2" , 2L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Kong-Skull-Island-trailer-2-200x200.jpg", loremIpsum));
-             _videoRepository.save( new Video("title3" , 3L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Moana-banner-200x200.jpg", loremIpsum));
-             _videoRepository.save( new Video("title4" , 4L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Valerian-and-the-City-of-a-Thousand-Planets-01-200x200.jpg", loremIpsum));
-             _videoRepository.save( new Video("title5" , 5L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Vampire-Lestat-200x200.jpg", loremIpsum));
+             _videoRepository.save( new Video("Title1" , 1L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Fantastic-Beasts-and-Where-To-Find-Them-banner-200x200.jpg", loremIpsum, category));
+             _videoRepository.save( new Video("Title2" , 2L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Kong-Skull-Island-trailer-2-200x200.jpg", loremIpsum, category));
 
-
-         }
+             category = _categoryRepository.findByCategoryName("Comedy");
+             _videoRepository.save( new Video("Title3" , 3L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Moana-banner-200x200.jpg", loremIpsum, category));
+             _videoRepository.save( new Video("Title4" , 4L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Valerian-and-the-City-of-a-Thousand-Planets-01-200x200.jpg", loremIpsum, category));
+             _videoRepository.save( new Video("Title5" , 5L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Vampire-Lestat-200x200.jpg", loremIpsum, category));
+        }
     }
+
+    private void seedVideoDataTable() {
+        List<VideoData> videodata = videoDataRepository.findAll();
+
+        if(videodata == null || videodata.size() <= 0) {
+            Video video = _videoRepository.findById(1l).get();
+            videoDataRepository.save(new VideoData(120, 1080, "wmv", video,"C:"));
+
+            video = _videoRepository.findById(2l).get();
+            videoDataRepository.save(new VideoData(90, 1080, "avi", video,"C:"));
+
+            video = _videoRepository.findById(3l).get();
+            videoDataRepository.save(new VideoData(190, 1080, "avi", video,"C:"));
+
+            video = _videoRepository.findById(4l).get();
+            videoDataRepository.save(new VideoData(135, 1080, "mkv", video,"C:"));
+
+            video = _videoRepository.findById(5l).get();
+            videoDataRepository.save(new VideoData(122, 1080, "mkv", video,"C:"));
+        }
+    }
+
     private void seedCategoryTable(){
         List<Category> categories =_categoryRepository.findAll();
         if(categories== null || categories.size() <= 0){
@@ -60,7 +89,15 @@ public class DbSeed {
             _categoryRepository.save( new Category("Romance"));
             _categoryRepository.save( new Category("Adventure"));
             _categoryRepository.save( new Category("Fantasy"));
-        }}
+        }
+    }
+
+    private void seedReviewsTable(){
+        List<Review> reviews = reviewRepository.findAll();
+        if(reviews == null || reviews.size() <= 0){
+
+        }
+    }
 
     private void seedShowsTable(){
         List<Show> shows = _showsRepository.findAll();
