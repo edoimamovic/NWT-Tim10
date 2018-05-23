@@ -11,7 +11,7 @@ export class AuthService {
 
     API_URL = 'http://localhost:8090/auth';
     TOKEN_KEY = 'token';
-    private username: string;
+    private email: string;
 
     constructor(private http: HttpClient, private router: Router) { }
 
@@ -28,14 +28,14 @@ export class AuthService {
         this.router.navigateByUrl('/');
     }
 
-    public getUsername(): string {
-        return this.username;
+    public getEmail(): string {
+        return this.email;
     }
 
-    login(username: string, pass: string): Observable<any> {
+    login(email: string, pass: string): Observable<any> {
         const response = new Observable<any>(observer => {
             this.http.post(this.API_URL + '/login', {
-                username: username,
+                email: email,
                 password: pass
             },
             {
@@ -47,11 +47,11 @@ export class AuthService {
                 token = token.replace('Bearer ', '');
                 localStorage.setItem(this.TOKEN_KEY, token);
                 this.router.navigateByUrl('');
-                this.username = username;
-                observer.next({username: username});
+                this.email = email;
+                observer.next({email: email});
             },
         (err: HttpErrorResponse) => {
-            observer.next({errorMessage: 'Username/password combination is incorrect.'});
+            observer.next({errorMessage: 'Email/password combination is incorrect.'});
         });
         });
 

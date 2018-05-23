@@ -1,12 +1,13 @@
 
-
+<div>
 <ng-container *ngIf="!!video">
 
 
   <h2 class="title is-2">{{video.title}}</h2>
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item"[src]="video.url | safe">
+  <iframe style="width:600px; height: 450px;" class="embed-responsive-item" [src]="video.url | safe">
   </iframe>
-</div>
+ </div>
 </ng-container>
+</div>
