@@ -1,9 +1,9 @@
-<a [routerLink]="['/video/details/', video.id]">
+<a [routerLink]="['/video/details/', video.title]">
   <div class="card mb-3">
-    <img class="w-100 d-block" style="height: 200px;" [src]="video.thumbnailUrl">
+    <img class="w-100 d-block" style="height: 220px;" [src]="video.thumbnailUrl">
 
     <div class="card-footer text-muted">
-      <p class="text-white">{{ video.title }}</p>
+      {{ video.title }}
     </div>
   </div>
 </a>
