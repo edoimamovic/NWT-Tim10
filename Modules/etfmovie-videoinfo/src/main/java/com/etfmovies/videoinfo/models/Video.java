@@ -44,20 +44,16 @@ public class Video {
 
     private String thumbnailUrl;
 
-    @OneToMany
-    private List<VideoImage> images;
-
     public Video() {
     }
 
-    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl, String description, Category category, List<VideoImage> images) {
+    public Video(@NotNull String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl, String description, Category category) {
         this.title = title;
         this.uploadedBy = uploadedBy;
         this.uploadDate = uploadDate;
         this.thumbnailUrl = thumbnailUrl;
         this.description = description;
         this.category = category;
-        this.images = images;
     }
 
     public String getTitle() {
@@ -138,13 +134,5 @@ public class Video {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public List<VideoImage> getImages() {
-        return images;
-    }
-
-    public void setImages(List<VideoImage> images) {
-        this.images = images;
     }
 }

@@ -22,7 +22,7 @@ import { AuthInterceptor } from './http.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
-
+import { OwlModule } from 'ngx-owl-carousel';
 
 const appRoutes: Routes = [
   { path: 'signin',
@@ -89,6 +89,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    OwlModule
   ],
   providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

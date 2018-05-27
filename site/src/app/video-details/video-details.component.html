@@ -4,35 +4,82 @@
 
       <div class="container">
         <div class="row py-5">
-          <div class="col-sm-4">
-            <img class="w-100 d-block" style="height: 300px;" [src]="video.thumbnailUrl">
+          <div class="col-sm-3">
+            <img class="w-100 d-block thumbnail-cover" [src]="video.thumbnailUrl">
           </div>
           <div class="col">
             <h2 class="mt-3 mt-sm-0">{{ video.title }}</h2>
 
-            <div class="text-muted">
-              <p class="mb-0">{{ video.category.categoryName }} | {{ video.videoData.length }} min </p>
-              <p *ngIf="videoRating > 0; else no_rating_label">
-                <span class="score">
-                  <span [style.width.%]="videoRating"></span>
-                </span>
-              </p>
-              <ng-template #no_rating_label>
-                <p>No User Rating</p>
-              </ng-template>
+            <div class="text-white text-sm">
+              <small class="mb-0">
+                <i class="fa fa-calendar" aria-hidden="true"></i> {{ video.uploadDate | date : 'yyyy' }}  &nbsp;
+                <i class="fa fa-list-ul" aria-hidden="true"></i> {{ video.category.categoryName }} &nbsp;
+                <i class="fa fa-clock-o" aria-hidden="true"></i> {{ video.videoData.length }} min &nbsp;
+              </small>
+
+              <p *ngIf="video.rating > 0; else no_rating_label">
+                  <span class="score">
+                    <span [style.width.%]="video.rating"></span>
+                  </span>
+                </p>
+                <ng-template #no_rating_label>
+                  <p>No User Rating</p>
+                </ng-template>
             </div>
 
             <p> {{ video.description }}</p>
 
-            <a [href]="video.url" class="btn btn-outline-success" data-toggle="lightbox" data-width="1200" data-gallery="streamvideo">Watch Now</a>
+            <a [href]="video.url" class="btn btn-outline-success" data-toggle="lightbox" data-width="1200" data-gallery="stream-video">Watch Now</a>
+
+            <div class="btn-group ml-2" role="group" aria-label="Select Quality">
+              <button type="button" class="btn btn-outline-info">Quality</button>
+              <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false"></button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 36px, 0px);">
+                  <a class="dropdown-item" href="">480</a>
+                  <a class="dropdown-item" href="">720 HD</a>
+                  <a class="dropdown-item" href="">1080 HD</a>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-outline-info ml-2">Favorite &nbsp;
+              <i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
 
-        <div class="justify-content-start owl-carousel mt-3">
-          <a *ngFor="let image of video.images" href="image.imageUrl" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3">
-            <img src="image.imageUrl" class="img-fluid">
-          </a>
-        </div>
+        <owl-carousel class="mt-3" [items]="video.images" [options]="{
+            items:4,
+            loop: true,
+            margin: 5,
+            dots: true,
+            autoplay: true,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+              '0':{
+                items: 1
+              },
+              '576':{
+                  items: 2
+              },
+              '768':{
+                items: 3
+              },
+              '992':{
+                  items: 4
+              }
+            }
+          }">
+
+          <div *ngFor="let image of video.images" class="">
+            <a [href]="image.imageUrl" class="item col-sm-3" data-toggle="lightbox" data-gallery="video-images-gallery">
+              <img [src]="image.imageUrl" class="img-thumb">
+            </a>
+          </div>
+        </owl-carousel>
       </div>
 
     </div>

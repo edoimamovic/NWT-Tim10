@@ -11,7 +11,6 @@ import { Video } from '../shared/video';
 export class VideoDetailsComponent implements OnInit {
   private id: number;
   private video: Video;
-  private videoRating: number;
 
   constructor(private route: ActivatedRoute,
               private videoService: VideoService) { }
@@ -19,12 +18,13 @@ export class VideoDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.videoService.get(this.id).subscribe(video => { this.video = video; });
+      this.videoService.get(this.id).subscribe(video => { 
+        this.video = video;
+      });
     });
+  }
 
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-      this.videoService.getRating(this.id).subscribe(videoRating => { this.videoRating = videoRating*10; });
-    })
+  public getVideoYear(){
+    return this.video.uploadDate.getFullYear();
   }
 }

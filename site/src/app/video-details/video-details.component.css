@@ -10,7 +10,7 @@ body, html {
 }
 
 .bg-overlay{
-  background-color: rgba(30, 39, 53, 0.8);
+  background-color: rgba(30, 39, 53, 0.9);
   width: 100%;
   height: 100%;
 }
@@ -35,4 +35,14 @@ body, html {
   top: 0;
   left: 0;
   overflow: hidden;
+}
+
+.img-thumb {
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+small > .fa {
+  margin-right: 5px;
 }

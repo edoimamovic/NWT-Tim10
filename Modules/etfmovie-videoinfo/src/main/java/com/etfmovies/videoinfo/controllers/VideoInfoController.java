@@ -1,10 +1,13 @@
 package com.etfmovies.videoinfo.controllers;
 
+import com.etfmovies.videoinfo.models.VideoImage;
 import com.etfmovies.videoinfo.services.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -34,6 +37,11 @@ public class VideoInfoController {
     @RequestMapping("/get-rating")
     Long getVideoRating(Long id){
         return videoInfoService.getVideoRating(id);
+    }
+
+
+    List<VideoImage> getVideoImages(Long id){
+        return videoInfoService.getVideoImages(id);
     }
 
     @RequestMapping(path = "/uploadedBy")

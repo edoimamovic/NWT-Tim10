@@ -1,9 +1,6 @@
 package com.etfmovies.videoinfo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,11 +12,15 @@ public class VideoImage {
     @NotNull
     private String imageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "video_id", nullable = false)
+    private Video video;
+
     public VideoImage() {
     }
 
-    public VideoImage(Long id, String imageUrl) {
-        this.id = id;
+    public VideoImage(Video video, String imageUrl) {
+        this.video = video;
         this.imageUrl = imageUrl;
     }
 
@@ -37,5 +38,13 @@ public class VideoImage {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
     }
 }
