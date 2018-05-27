@@ -9,6 +9,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.GregorianCalendar;
@@ -48,13 +49,13 @@ public class DbSeed {
         if(videos == null || videos.size() <= 0){
              Category category = _categoryRepository.findByCategoryName("Action");
              String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus laoreet luctus. Donec tempus, turpis a ornare blandit, sapien justo volutpat enim, ac vehicula ante massa ut magna. Mauris id condimentum magna, ut faucibus tortor. Phasellus nec risus ut mi placerat commodo. Vivamus blandit viverra dolor vel luctus. Mauris eu mollis leo,";
-             _videoRepository.save( new Video("Title1" , 1L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Fantastic-Beasts-and-Where-To-Find-Them-banner-200x200.jpg", loremIpsum, category));
-             _videoRepository.save( new Video("Title2" , 2L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Kong-Skull-Island-trailer-2-200x200.jpg", loremIpsum, category));
+             _videoRepository.save( new Video("Title1" , 1L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Fantastic-Beasts-and-Where-To-Find-Them-banner-200x200.jpg", loremIpsum, category, Collections.emptyList()));
+             _videoRepository.save( new Video("Title2" , 2L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Kong-Skull-Island-trailer-2-200x200.jpg", loremIpsum, category, Collections.emptyList()));
 
              category = _categoryRepository.findByCategoryName("Comedy");
-             _videoRepository.save( new Video("Title3" , 3L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Moana-banner-200x200.jpg", loremIpsum, category));
-             _videoRepository.save( new Video("Title4" , 4L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Valerian-and-the-City-of-a-Thousand-Planets-01-200x200.jpg", loremIpsum, category));
-             _videoRepository.save( new Video("Title5" , 5L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Vampire-Lestat-200x200.jpg", loremIpsum, category));
+             _videoRepository.save( new Video("Title3" , 3L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Moana-banner-200x200.jpg", loremIpsum, category, Collections.emptyList()));
+             _videoRepository.save( new Video("Title4" , 4L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Valerian-and-the-City-of-a-Thousand-Planets-01-200x200.jpg", loremIpsum, category, Collections.emptyList()));
+             _videoRepository.save( new Video("Title5" , 5L, new GregorianCalendar(2017,2,4).getTime(), "http://seanpaune.com/wp-content/uploads/2016/11/Vampire-Lestat-200x200.jpg", loremIpsum, category, Collections.emptyList()));
         }
     }
 
@@ -94,8 +95,10 @@ public class DbSeed {
 
     private void seedReviewsTable(){
         List<Review> reviews = reviewRepository.findAll();
-        if(reviews == null || reviews.size() <= 0){
 
+        if(reviews == null || reviews.size() <= 0){
+            Video video = _videoRepository.findByTitle("Title5");
+            reviewRepository.save(new Review("Good", new GregorianCalendar(2017,2,4).getTime(), 1l, 8, video));
         }
     }
 

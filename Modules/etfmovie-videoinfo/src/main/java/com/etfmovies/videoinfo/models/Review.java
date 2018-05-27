@@ -13,11 +13,11 @@ public class Review {
     private Long id;
 
     @NotNull
-    @Size(min = 10, max = 1000)
+    @Size(min = 1, max = 1000)
     private String reviewText;
 
     @Min(1)
-    @Max(5)
+    @Max(10)
     @NotNull
     private Integer reviewRating;
 
@@ -36,10 +36,12 @@ public class Review {
     public Review() {
     }
 
-    public Review(@NotNull String lastname, @NotNull Date date, Long reviewerId, Integer reviewRating) {
-        this.reviewText = lastname;
+    public Review(@NotNull String reviewText, @NotNull Date date, Long reviewerId, Integer reviewRating, Video video) {
+        this.reviewText = reviewText;
         this.date = date;
+        this.reviewerId = reviewerId;
         this.reviewRating = reviewRating;
+        this.video = video;
     }
 
     public String getReviewText() {

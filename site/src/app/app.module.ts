@@ -43,7 +43,7 @@ const appRoutes: Routes = [
     redirectTo: '/browse',
     pathMatch: 'full'
   },
-  { path: 'video/:id', component: VideoDetailsComponent },
+  { path: 'video/details/:id', component: VideoDetailsComponent },
 
   { path: 'profilepage',
     component: ProfilePageComponent

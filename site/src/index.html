@@ -13,7 +13,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius+Unicase">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="./assets/css/ekko-lightbox.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="./assets/css/owl.carousel.min.css"> 
+  <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
 </head>
 
 <body>
@@ -22,5 +25,24 @@
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="./assets/js/owl.carousel.min.js"></script>
+  <script src="./assets/js/ekko-lightbox.min.js"></script>
+  <script>
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+
+    $(document).ready(function(){
+      $(".owl-carousel").owlCarousel({
+        items:4,
+        loop: true,
+        margin: 5,
+        dots: true,
+        autoplay: true,
+        autoplayHoverPause: true
+      });
+    });
+  </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface VideoRepository extends CrudRepository<Video, Long> {
     List<Video> findAll();
+    Video findByTitle(String title);
     List<Video> findByTitleContaining(String title);
     List<Video> findVideosByUploadedBy(Long id);
     void deleteById(Long id);

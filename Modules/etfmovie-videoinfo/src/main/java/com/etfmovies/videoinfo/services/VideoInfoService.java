@@ -1,6 +1,8 @@
 package com.etfmovies.videoinfo.services;
 
+import com.etfmovies.videoinfo.models.Review;
 import com.etfmovies.videoinfo.models.Video;
+import com.etfmovies.videoinfo.repositories.ReviewRepository;
 import com.etfmovies.videoinfo.repositories.VideoRepository;
 import com.etfmovies.videoinfo.service_interfaces.IVideoInfoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +33,9 @@ public class VideoInfoService implements IVideoInfoService {
         return videoRepository.findByTitleContaining(query);
     }
 
+    @Autowired
+    ReviewRepository reviewRepository;
+
     @Override
     public Boolean deleteVideo(Long videoId) {
         try {
@@ -59,6 +64,14 @@ public class VideoInfoService implements IVideoInfoService {
         } catch (Exception ex) {
             return new ArrayList<>();
         }
+    }
+
+    @Override
+    public Long getVideoRating(Long id) {
+        List<Review> reviews = reviewRepository.getAllByVideoId(id);
+        Integer scoreSum = reviews.stream().map(Review::getReviewRating).mapToInt(Integer::intValue).sum();
+        Double score = scoreSum*1.0/reviews.size();
+        return score.longValue();
     }
 
     @Override

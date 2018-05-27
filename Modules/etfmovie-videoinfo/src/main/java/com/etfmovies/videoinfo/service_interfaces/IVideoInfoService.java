@@ -12,4 +12,6 @@ public interface IVideoInfoService {
     List<Video> searchVideos(String query);
 
     List<Video> getUsersVideos(Long userId);
+
+    Long getVideoRating(Long id);
 }

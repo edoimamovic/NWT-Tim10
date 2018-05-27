@@ -1,0 +1,38 @@
+body, html {
+  height: 100%;
+}
+
+.bg { 
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-overlay{
+  background-color: rgba(30, 39, 53, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+.score {
+  display: inline-block;
+  font-family: Wingdings;
+  font-size: 20px;
+  color: #ccc;
+  position: relative;
+}
+
+.score::before,
+.score span::before{
+  content: "\2605\2605\2605\2605\2605";
+  display: block;
+}
+
+.score span {
+  color: gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}

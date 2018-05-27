@@ -7,6 +7,7 @@ export class Video {
     public category: object;
     public url: string;
     public thumbnailUrl: string;
+    public images: object[];
     public description: string;
 
     constructor(data) {
@@ -19,6 +20,7 @@ export class Video {
             this.videoData = data.videoData;
             this.url = data.url;
             this.thumbnailUrl = data.thumbnailUrl;
+            this.images = data.images;
             this.description = data.description;
         }
     }
