@@ -1,34 +1,25 @@
-<div>
-<br>
-  <body>
-	<div class="login">
-		<div class="login-screen">
-			<div class="app-title">
-				<h1>Login</h1>
-           <br>
-			</div>
-			<div class="login-form">
-				<div class="control-group">
-				<input type="text" class="login-field" value="" placeholder="email@example.com" id="login-name" [(ngModel)]="email" >
-				<label class="login-field-icon fui-user" for="login-name"></label>
-				</div>
+<div class="container">
+  <div class="row justify-content-md-center mb-5">
+    <div class="col-4">
+      <h1 class="my-4 text-center">Login</h1>
 
-				<div class="control-group">
-				<input type="password" class="login-field" value="" placeholder="password" id="login-pass"  [(ngModel)]="password" >
-				<label class="login-field-icon fui-lock" for="login-pass"></label>
-				</div>
+      <div class="form-group">
+        <label for="login-name"></label>
+        <input class="form-control" type="text" value="" placeholder="Email" id="login-name" [(ngModel)]="email">
+      </div>
 
-				<a class="btn btn-primary btn-large btn-block"  (click)="login()" >login</a>
+      <div class="form-group">
+        <label for="login-pass"></label>
+        <input class="form-control" type="password" value="" placeholder="Password" id="login-pass"
+               [(ngModel)]="password">
+      </div>
+
+      <div class="text-center">
+        <span class="text-danger">{{message}}</span>
+        <a class="btn btn btn-outline-success mt-3" (click)="login()">login</a>
         <br>
-        <span>{{message}}</span>
-				<a class="login-link" href="#"></a>
-			</div>
-		</div>
-	</div>
-</body>
+        <a class="login-link" href="#"></a>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
-  

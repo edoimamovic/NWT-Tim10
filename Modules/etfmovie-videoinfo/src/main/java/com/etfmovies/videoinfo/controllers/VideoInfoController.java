@@ -1,13 +1,13 @@
 package com.etfmovies.videoinfo.controllers;
 
+import com.etfmovies.videoinfo.models.VideoImage;
 import com.etfmovies.videoinfo.services.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -23,7 +23,6 @@ public class VideoInfoController {
             return new ResponseEntity("Id must be provided as a positive integer.", HttpStatus.BAD_REQUEST);
         }
 
-
         return ResponseEntity.ok().body(videoInfoService.getInfo(id));
     }
 
@@ -33,6 +32,16 @@ public class VideoInfoController {
             return new ResponseEntity("Search string must be provided.", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity(videoInfoService.searchVideos(string), HttpStatus.OK);
+    }
+
+    @RequestMapping("/get-rating")
+    Long getVideoRating(Long id){
+        return videoInfoService.getVideoRating(id);
+    }
+
+
+    List<VideoImage> getVideoImages(Long id){
+        return videoInfoService.getVideoImages(id);
     }
 
     @RequestMapping(path = "/uploadedBy")

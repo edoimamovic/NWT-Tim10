@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
-import { Video } from '../video';
+import { Video } from '../shared/video';
 
 @Component({
   selector: 'app-video-details',
@@ -17,10 +17,14 @@ export class VideoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = +params['id'];
-
-      this.videoService.get(this.id).subscribe(video => {this.video = video; });
+      this.id = params['id'];
+      this.videoService.get(this.id).subscribe(video => { 
+        this.video = video;
+      });
     });
   }
 
+  public getVideoYear(){
+    return this.video.uploadDate.getFullYear();
+  }
 }

@@ -19,7 +19,10 @@ import * as jwt_decode from '../../node_modules/jwt-decode';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { SafePipe } from './safe.pipe';
 import { AuthInterceptor } from './http.interceptor';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { VideoTileComponent } from './video-tile/video-tile.component';
+import { OwlModule } from 'ngx-owl-carousel';
 
 const appRoutes: Routes = [
   { path: 'signin',
@@ -40,7 +43,7 @@ const appRoutes: Routes = [
     redirectTo: '/browse',
     pathMatch: 'full'
   },
-  { path: 'video/:id', component: VideoDetailsComponent },
+  { path: 'video/details/:id', component: VideoDetailsComponent },
 
   { path: 'profilepage',
     component: ProfilePageComponent
@@ -73,7 +76,10 @@ const appRoutes: Routes = [
     VideoDetailsComponent,
     ProfilePageComponent,
     ContactComponent,
-    SafePipe
+    SafePipe,
+    NavbarComponent,
+    FooterComponent,
+    VideoTileComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -83,6 +89,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    OwlModule
   ],
   providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

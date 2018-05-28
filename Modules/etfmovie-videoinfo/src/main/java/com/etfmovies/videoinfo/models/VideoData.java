@@ -14,6 +14,41 @@ public class VideoData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Min(1)
+    @Max(1000)
+    private Integer length;
+
+    @NotNull
+    @Min(16)
+    @Max(11200000)
+    private Integer bitRate;
+
+    @NotNull
+    @Size(min = 0, max = 100)
+    private String format;
+
+    @OneToOne
+    @JoinColumn(name = "videoId")
+    @JsonBackReference
+    @NotNull
+    private Video video;
+
+    @NotNull
+    @Size(min = 0, max = 1000000)
+    private String diskPath;
+
+    public VideoData() {
+    }
+
+    public VideoData(@NotNull Integer length, @NotNull Integer bitRate, @NotNull String format, @NotNull Video video, @NotNull String diskPath) {
+        this.length = length;
+        this.bitRate = bitRate;
+        this.format = format;
+        this.video = video;
+        this.diskPath = diskPath;
+    }
+
     public Integer getLength() {
         return length;
     }
@@ -38,35 +73,6 @@ public class VideoData {
         this.format = format;
     }
 
-    @NotNull
-    @Min(1)
-    @Max(1000)
-    private Integer length;
-
-    @NotNull
-    @Min(16)
-    @Max(11200000)
-    private Integer bitRate;
-
-    @NotNull
-    @Size(min = 0, max = 100)
-    private String format;
-
-    public Video getVideo() {
-        return video;
-    }
-
-    public void setVideo(Video video) {
-        this.video = video;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "videoId")
-    @JsonBackReference
-    @NotNull
-    private Video video;
-
-
     public String getDiskPath() {
         return diskPath;
     }
@@ -75,18 +81,11 @@ public class VideoData {
         this.diskPath = diskPath;
     }
 
-    @NotNull
-    @Size(min = 0, max = 1000000)
-    private String diskPath;
-
-    public VideoData() {
+    public Video getVideo() {
+        return video;
     }
 
-    public VideoData(@NotNull Integer length, @NotNull Integer bitRate, @NotNull String format, @NotNull Video video, @NotNull String diskPath) {
-        this.length = length;
-        this.bitRate = bitRate;
-        this.format = format;
+    public void setVideo(Video video) {
         this.video = video;
-        this.diskPath = diskPath;
     }
 }

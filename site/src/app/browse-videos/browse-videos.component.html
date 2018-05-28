@@ -1,21 +1,17 @@
 <div class="container">
-<div class="example">
-<input [(ngModel)]="searchString" />
-<button type="submit"(click)="search()"><i class="fa fa-search"></i> </button>
-</div>
-<br>
-<br>
-<body>
-<div class = "imagea">
-  <div class="columns col-7" style="float:left;">
-    <div *ngFor="let video of videos; let index = index" class="column is-4">
-        <p>
-          <a [routerLink]="['/video', video.id]">
-            <img [src]="video.thumbnailUrl"/>
-            {{video.title}}</a>
-        </p>
+  <div class="row my-4">
+    <div class="form-inline col-12">
+      <div class="form-group col-11 px-0">
+        <input class="form-control w-100" type="text" [(ngModel)]="searchString" placeholder="Enter Search Term" />
+      </div>
+      <button class="btn btn-success col-1" type="submit" (click)="search()">
+        <i class="fa fa-search"></i>
+      </button>
     </div>
   </div>
+
+  <div class="row justify-content-start">
+    <app-video-tile *ngFor="let video of videos" class="col-3" [video]="video">
+    </app-video-tile>
   </div>
-</body>
 </div>

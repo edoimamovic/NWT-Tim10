@@ -1,9 +1,15 @@
 package com.etfmovies.videoinfo.services;
 
+import com.etfmovies.videoinfo.models.Review;
 import com.etfmovies.videoinfo.models.Video;
+import com.etfmovies.videoinfo.models.VideoImage;
+import com.etfmovies.videoinfo.repositories.ReviewRepository;
+import com.etfmovies.videoinfo.repositories.VideoImageRepository;
 import com.etfmovies.videoinfo.repositories.VideoRepository;
 import com.etfmovies.videoinfo.service_interfaces.IVideoInfoService;
+import com.etfmovies.videoinfo.utils.VideoInfoResponseObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.discovery.converters.Auto;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -31,6 +37,12 @@ public class VideoInfoService implements IVideoInfoService {
         return videoRepository.findByTitleContaining(query);
     }
 
+    @Autowired
+    ReviewRepository reviewRepository;
+
+    @Autowired
+    VideoImageRepository videoImageRepository;
+
     @Override
     public Boolean deleteVideo(Long videoId) {
         try {
@@ -40,7 +52,6 @@ public class VideoInfoService implements IVideoInfoService {
         }
         return true;
     }
-
 
     @Override
     public List<Video> getUsersVideos(Long userId) {
@@ -62,14 +73,27 @@ public class VideoInfoService implements IVideoInfoService {
     }
 
     @Override
-    public Video getInfo(Long videoId) {
+    public Long getVideoRating(Long id) {
+        List<Review> reviews = reviewRepository.getAllByVideoId(id);
+        Integer scoreSum = reviews.stream().map(Review::getReviewRating).mapToInt(Integer::intValue).sum();
+        Double score = scoreSum*1.0/reviews.size();
+        return score.longValue();
+    }
+
+    @Override
+    public List<VideoImage> getVideoImages(Long videoId) {
+        Video v = videoRepository.findById(videoId).get();
+        return videoImageRepository.findByVideo(v);
+    }
+
+    @Override
+    public VideoInfoResponseObject getInfo(Long videoId) {
         try {
             Video video = videoRepository.findById(videoId).get();
             //List<ServiceInstance> streamServices = this.discoveryClient.getInstances("video-stream-service-client");
             //ServiceInstance service = streamServices.get(0);
             //String uri = service.getHost();
             String videoStreamUrl = "http://localhost:8082/video/getUrl?id=" + videoId;
-
 
             RestTemplate restTemplate = new RestTemplate();
 
@@ -78,7 +102,13 @@ public class VideoInfoService implements IVideoInfoService {
             restTemplate = new RestTemplate();
 
             video.setUrl(response.getBody());
-            return video;
+
+            VideoInfoResponseObject responseObject = new VideoInfoResponseObject(video.getId(),
+                    video.getTitle(), video.getDescription(), video.getUploadedBy(),
+                    video.getUploadedByUser(), video.getUploadDate(), video.getVideoData(), video.getCategory(),
+                    video.getUrl(), video.getThumbnailUrl(), getVideoRating(videoId)*10, getVideoImages(videoId));
+
+            return responseObject;
         }
         catch (EmptyResultDataAccessException ex) {
             throw new EmptyResultDataAccessException("No video with provided Id.", 1);

@@ -1,23 +1,32 @@
 export class Video {
     public id: number;
     public title: string;
+    public description: string;
     public uploadedBy: number;
     public uploadDate: Date;
-    public videoData: string;
+    public videoData: object;
+    public category: object;
     public url: string;
     public thumbnailUrl: string;
-    public description: string;
+    public rating: number;
+    public images: string[];
 
     constructor(data) {
         if (data) {
             this.id = data.id;
             this.title = data.title;
+            this.description = data.description;
             this.uploadedBy = data.uploadedBy;
             this.uploadDate = data.uploadDate;
             this.videoData = data.videoData;
+            this.category = data.category;
             this.url = data.url;
             this.thumbnailUrl = data.thumbnailUrl;
-            this.description = data.description;
+            this.rating = data.rating;
+
+            data.images.forEach(element => {
+                this.images.push(element.imageUrl);
+            });
         }
     }
 }

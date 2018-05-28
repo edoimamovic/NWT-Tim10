@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Video } from './video';
-
+import { Video } from 'src/app/shared/video';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,5 +16,9 @@ export class VideoService {
 
   public get(id: number): Observable<Video> {
     return this.http.get<Video>(`${this.API_URL}data?id=${id}`);
+  }
+
+  public getRating(id: number): Observable<number> {
+    return this.http.get<number>(`${this.API_URL}get-rating?id=${id}`);
   }
 }

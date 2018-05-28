@@ -1,0 +1,9 @@
+<a [routerLink]="['/video/details/', video.id]">
+  <div class="card mb-3">
+    <img class="w-100 d-block thumbnail-cover" [src]="video.thumbnailUrl">
+
+    <div class="card-footer text-muted">
+      {{ video.title }}
+    </div>
+  </div>
+</a>
