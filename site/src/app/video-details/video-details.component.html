@@ -8,22 +8,22 @@
             <img class="w-100 d-block thumbnail-cover" [src]="video.thumbnailUrl">
           </div>
           <div class="col">
-            <h2 class="mt-3 mt-sm-0">{{ video.title }}</h2>
+            <h2 class="mt-3 mt-sm-0 mb-0">{{ video.title }}</h2>
 
-            <div class="text-white text-sm">
-              <small class="mb-0">
+            <div class="mb-3">
+              <small>
                 <i class="fa fa-calendar" aria-hidden="true"></i> {{ video.uploadDate | date : 'yyyy' }}  &nbsp;
                 <i class="fa fa-list-ul" aria-hidden="true"></i> {{ video.category.categoryName }} &nbsp;
                 <i class="fa fa-clock-o" aria-hidden="true"></i> {{ video.videoData.length }} min &nbsp;
               </small>
 
-              <p *ngIf="video.rating > 0; else no_rating_label">
+              <span *ngIf="video.rating > 0; else no_rating_label">
                   <span class="score">
                     <span [style.width.%]="video.rating"></span>
                   </span>
-                </p>
+                </span>
                 <ng-template #no_rating_label>
-                  <p>No User Rating</p>
+                  <small>No User Rating</small>
                 </ng-template>
             </div>
 
