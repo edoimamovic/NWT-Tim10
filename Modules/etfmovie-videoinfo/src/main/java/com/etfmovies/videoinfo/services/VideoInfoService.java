@@ -1,8 +1,10 @@
 package com.etfmovies.videoinfo.services;
 
+import com.etfmovies.videoinfo.models.Category;
 import com.etfmovies.videoinfo.models.Review;
 import com.etfmovies.videoinfo.models.Video;
 import com.etfmovies.videoinfo.models.VideoImage;
+import com.etfmovies.videoinfo.repositories.CategoryRepository;
 import com.etfmovies.videoinfo.repositories.ReviewRepository;
 import com.etfmovies.videoinfo.repositories.VideoImageRepository;
 import com.etfmovies.videoinfo.repositories.VideoRepository;
@@ -42,6 +44,9 @@ public class VideoInfoService implements IVideoInfoService {
 
     @Autowired
     VideoImageRepository videoImageRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Override
     public Boolean deleteVideo(Long videoId) {
@@ -84,6 +89,16 @@ public class VideoInfoService implements IVideoInfoService {
     public List<VideoImage> getVideoImages(Long videoId) {
         Video v = videoRepository.findById(videoId).get();
         return videoImageRepository.findByVideo(v);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    @Override
+    public List<Video> getVideosByCategory(String category) {
+        return videoRepository.findByCategory(categoryRepository.findByCategoryName(category));
     }
 
     @Override

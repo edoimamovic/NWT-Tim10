@@ -18,7 +18,11 @@ export class VideoService {
     return this.http.get<Video>(`${this.API_URL}data?id=${id}`);
   }
 
-  public getRating(id: number): Observable<number> {
-    return this.http.get<number>(`${this.API_URL}get-rating?id=${id}`);
+  public getCategories(): Observable<Array<object>> {
+    return this.http.get<Array<object>>(`${this.API_URL}getAllCategories`);
+  }
+
+  public getVideosByCategory(category: string): Observable<Array<Video>> {
+    return this.http.get<Array<Video>>(`${this.API_URL}getVideosByCategory/${category}`);
   }
 }

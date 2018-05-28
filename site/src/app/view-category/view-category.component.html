@@ -1,0 +1,12 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col">
+      <h1 class="mb-3">{{ categoryName }}</h1>
+    </div>
+  </div>
+
+  <div *ngIf="videos != null" class="row justify-content-start">
+    <app-video-tile *ngFor="let video of videos" class="col-3" [video]="video">
+    </app-video-tile>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 package com.etfmovies.videoinfo.controllers;
 
+import com.etfmovies.videoinfo.models.Category;
+import com.etfmovies.videoinfo.models.Video;
 import com.etfmovies.videoinfo.models.VideoImage;
 import com.etfmovies.videoinfo.services.VideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +65,13 @@ public class VideoInfoController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @RequestMapping("/getAllCategories")
+    public List<Category> getAllCategories(){
+        return videoInfoService.getAllCategories();
+    }
+
+    @RequestMapping("/getVideosByCategory/{category}")
+    public List<Video> getVideosByCategory(@PathVariable("category") String category){
+        return videoInfoService.getVideosByCategory(category);
+    }
 }

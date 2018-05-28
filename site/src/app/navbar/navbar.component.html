@@ -19,8 +19,13 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']">Videos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/categories']">Categories</a>
+        <li *ngIf="categories != null" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <a *ngFor="let c of categories" class="dropdown-item" [routerLink]="['/categories/', c.categoryName]">{{ c.categoryName }}</a>
+            </div>
         </li>
       </ul>
 

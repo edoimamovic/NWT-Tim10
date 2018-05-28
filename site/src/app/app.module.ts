@@ -23,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
 import { OwlModule } from 'ngx-owl-carousel';
+import { ViewCategoryComponent } from './view-category/view-category.component';
 
 const appRoutes: Routes = [
   { path: 'signin',
@@ -36,23 +37,26 @@ const appRoutes: Routes = [
     redirectTo: '/register',
      pathMatch: 'full'
  },*/
-  { path: 'browse',
+  { 
+    path: 'browse',
     component: BrowseVideosComponent
   },
-  { path: '',
+  { 
+    path: '',
     redirectTo: '/browse',
     pathMatch: 'full'
   },
-  { path: 'video/details/:id', component: VideoDetailsComponent },
-
+  { 
+    path: 'video/details/:id', 
+    component: VideoDetailsComponent 
+  },
   { path: 'profilepage',
     component: ProfilePageComponent
   },
   {
     path: '',
     redirectTo: '/profilepage',
-     pathMatch: 'full'
-
+    pathMatch: 'full'
   },
     { path: 'contact',
     component: ContactComponent
@@ -61,7 +65,10 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/contact',
      pathMatch: 'full'
-
+  },
+  {
+    path:'categories/:category',
+    component: ViewCategoryComponent
   },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -79,7 +86,8 @@ const appRoutes: Routes = [
     SafePipe,
     NavbarComponent,
     FooterComponent,
-    VideoTileComponent
+    VideoTileComponent,
+    ViewCategoryComponent
   ],
   imports: [
     RouterModule.forRoot(
