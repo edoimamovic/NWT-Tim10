@@ -1,3 +1,5 @@
+import { VideoReview } from "./videoReview";
+
 export class Video {
     public id: number;
     public title: string;
@@ -10,6 +12,7 @@ export class Video {
     public thumbnailUrl: string;
     public rating: number;
     public images: string[];
+    public reviewList: VideoReview[];
 
     constructor(data) {
         if (data) {
@@ -26,6 +29,10 @@ export class Video {
 
             data.images.forEach(element => {
                 this.images.push(element.imageUrl);
+            });
+
+            data.reviewList.forEach(element => {
+                this.reviewList.push(new VideoReview(element));
             });
         }
     }

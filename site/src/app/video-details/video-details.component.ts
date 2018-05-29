@@ -14,18 +14,18 @@ export class VideoDetailsComponent implements OnInit {
   private video: Video;
 
   constructor(private route: ActivatedRoute,
-              private videoService: VideoService) { }
+    private videoService: VideoService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.videoService.get(this.id).subscribe(video => { 
+      this.videoService.get(this.id).subscribe(video => {
         this.video = video;
       });
     });
   }
 
-  public getVideoYear(){
+  public getVideoYear() {
     return this.video.uploadDate.getFullYear();
   }
 }

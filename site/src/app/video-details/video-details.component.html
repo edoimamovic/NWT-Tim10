@@ -12,19 +12,19 @@
 
             <div class="mb-3">
               <small>
-                <i class="fa fa-calendar" aria-hidden="true"></i> {{ video.uploadDate | date : 'yyyy' }}  &nbsp;
+                <i class="fa fa-calendar" aria-hidden="true"></i> {{ video.uploadDate | date : 'yyyy' }} &nbsp;
                 <i class="fa fa-list-ul" aria-hidden="true"></i> {{ video.category.categoryName }} &nbsp;
                 <i class="fa fa-clock-o" aria-hidden="true"></i> {{ video.videoData.length }} min &nbsp;
               </small>
 
               <span *ngIf="video.rating > 0; else no_rating_label">
-                  <span class="score">
-                    <span [style.width.%]="video.rating"></span>
-                  </span>
+                <span class="score">
+                  <span [style.width.%]="video.rating"></span>
                 </span>
-                <ng-template #no_rating_label>
-                  <small>No User Rating</small>
-                </ng-template>
+              </span>
+              <ng-template #no_rating_label>
+                <small>No User Rating</small>
+              </ng-template>
             </div>
 
             <p> {{ video.description }}</p>
@@ -50,7 +50,7 @@
           </div>
         </div>
 
-        <owl-carousel class="mt-3" [items]="video.images" [options]="{
+        <owl-carousel class="mt-3 row" [items]="video.images" [options]="{
             items:4,
             loop: true,
             margin: 5,
@@ -80,8 +80,20 @@
             </a>
           </div>
         </owl-carousel>
-      </div>
 
+        <div *ngIf="video.reviewList != null && video.reviewList.length > 0" class="row">
+          <h2 class="my-3">User Reviews</h2>
+          <div *ngFor="let review of video.reviewList" class="card border-primary w-100">
+            <div class="card-header">
+              <span class="mr-auto">{{ review.reviewerUsername }}</span>
+              <span class="ml-auto">{{ review.rating }}</span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ review.reviewText }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
