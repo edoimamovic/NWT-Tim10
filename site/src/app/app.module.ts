@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from './auth.service';
 
@@ -11,8 +11,8 @@ import { SigninComponent } from './signin/signin.component';
 // import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowseVideosComponent } from './browse-videos/browse-videos.component';
-import { ProfilePageComponent} from './profile-page/profile-page.component';
-import { ContactComponent} from './contact/contact.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ContactComponent } from './contact/contact.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import * as jwt_decode from '../../node_modules/jwt-decode';
@@ -24,33 +24,32 @@ import { FooterComponent } from './footer/footer.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { ViewCategoryComponent } from './view-category/view-category.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
-  { path: 'signin',
+  {
+    path: 'signin',
     component: SigninComponent
   },
-  /* { path: 'register',
+  {
+    path: 'register',
     component: RegisterComponent
   },
-   {
-    path: '',
-    redirectTo: '/register',
-     pathMatch: 'full'
- },*/
-  { 
+  {
     path: 'browse',
     component: BrowseVideosComponent
   },
-  { 
+  {
     path: '',
     redirectTo: '/browse',
     pathMatch: 'full'
   },
-  { 
-    path: 'video/details/:id', 
-    component: VideoDetailsComponent 
+  {
+    path: 'video/details/:id',
+    component: VideoDetailsComponent
   },
-  { path: 'profilepage',
+  {
+    path: 'profilepage',
     component: ProfilePageComponent
   },
   {
@@ -58,16 +57,17 @@ const appRoutes: Routes = [
     redirectTo: '/profilepage',
     pathMatch: 'full'
   },
-    { path: 'contact',
+  {
+    path: 'contact',
     component: ContactComponent
   },
   {
     path: '',
     redirectTo: '/contact',
-     pathMatch: 'full'
+    pathMatch: 'full'
   },
   {
-    path:'categories/:category',
+    path: 'categories/:category',
     component: ViewCategoryComponent
   },
   { path: '**', component: PageNotFoundComponent }
@@ -87,7 +87,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     FooterComponent,
     VideoTileComponent,
-    ViewCategoryComponent
+    ViewCategoryComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -97,9 +98,10 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     OwlModule
   ],
-  providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -31,8 +31,13 @@
 
       <ul class="navbar-nav ml-auto">
         <ng-container *ngIf="!authService.isAuthenticated">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/register']">Register</a>
+            </li>
+          </ng-container>
+        <ng-container *ngIf="!authService.isAuthenticated">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/signin']" *ngIf="!authService.isAuthenticated">Login</a>
+            <a class="nav-link" [routerLink]="['/signin']">Login</a>
           </li>
         </ng-container>
         <ng-container *ngIf="authService.isAuthenticated">
