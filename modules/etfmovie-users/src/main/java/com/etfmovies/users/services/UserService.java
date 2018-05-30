@@ -32,6 +32,7 @@ public class UserService implements IUserService {
         return userDataRepository.save(userData);
     }
 
+
     @Override
     public UserData getUserDataByUserId(Long userId) {
         try{
@@ -42,22 +43,46 @@ public class UserService implements IUserService {
         }
     }
 
+
+    @Override
+    public UserData getUserDataByEmail(String email) {
+        try{
+            List<UserData> allUsers = userDataRepository.findAll();
+            return userDataRepository.findByEmail(email);
+        }
+        catch (NoSuchElementException ex){
+            throw new NoSuchElementException("No user with the provided email.");
+        }
+    }
+
+
     @Override
     public UserData updateUserData(UserData userData) {
-        return userDataRepository.save(userData);
+        UserData oldData = userDataRepository.findById(userData.getId()).get();
+
+        if (userData.getFirstName() != null && !userData.getFirstName().isEmpty()){
+            oldData.setFirstName(userData.getFirstName());
+        }
+
+        if (userData.getLastName() != null && !userData.getLastName().isEmpty()){
+            oldData.setLastName(userData.getLastName());
+        }
+
+        if (userData.getEmail() != null && !userData.getEmail().isEmpty()){
+            oldData.setEmail(userData.getEmail());
+        }
+
+        if (userData.getBirthDate() != null){
+            oldData.setBirthDate(userData.getBirthDate());
+        }
+
+        return userDataRepository.save(oldData);
     }
 
     @Override
     public void activateUser(String email) {
         UserData userData = userDataRepository.findByEmail(email);
         userData.setActive(true);
-        userDataRepository.save(userData);
-    }
-
-    @Override
-    public void changePassword(String email, String password) {
-        UserData userData = userDataRepository.findByEmail(email);
-        userData.setPassword(password);
         userDataRepository.save(userData);
     }
 

@@ -9,9 +9,9 @@ import java.util.List;
 public interface IUserService {
     UserData registerUser(UserData userData);
     UserData getUserDataByUserId(Long userId);
+    UserData getUserDataByEmail(String email);
     UserData updateUserData(UserData userData);
     void activateUser(String email);
-    void changePassword(String email, String password);
 
     void AddToFavourites(Long userId, Long videoId);
     void AddReview(Long userId, Long videoId, String review, Integer rating);

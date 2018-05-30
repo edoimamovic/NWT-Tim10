@@ -47,6 +47,10 @@
             <button class="btn btn-outline-info ml-2">Favorite &nbsp;
               <i class="fa fa-plus"></i>
             </button>
+
+            <button class="btn btn-outline-danger ml-2" (click)="delete()" *ngIf="authService.isAdmin()">Delete &nbsp;
+                <i class="fa fa-eraser"></i>
+              </button>
           </div>
         </div>
 

@@ -25,6 +25,7 @@ import { VideoTileComponent } from './video-tile/video-tile.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { ViewCategoryComponent } from './view-category/view-category.component';
 import { RegisterComponent } from './register/register.component';
+import { AddMovieComponent } from './add-movie/add-movie.component';
 
 const appRoutes: Routes = [
   {
@@ -70,6 +71,12 @@ const appRoutes: Routes = [
     path: 'categories/:category',
     component: ViewCategoryComponent
   },
+
+  {
+    path: 'add-movie',
+    component: AddMovieComponent
+  },
+
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -88,7 +95,8 @@ const appRoutes: Routes = [
     FooterComponent,
     VideoTileComponent,
     ViewCategoryComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddMovieComponent
   ],
   imports: [
     RouterModule.forRoot(

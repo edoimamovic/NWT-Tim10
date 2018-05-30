@@ -12,7 +12,7 @@ public class VideoImage {
     @NotNull
     private String imageUrl;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "video_id", nullable = false)
     private Video video;
 

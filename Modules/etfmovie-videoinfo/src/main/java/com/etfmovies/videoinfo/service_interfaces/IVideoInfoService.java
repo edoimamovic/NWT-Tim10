@@ -1,6 +1,7 @@
 package com.etfmovies.videoinfo.service_interfaces;
 
 import com.etfmovies.videoinfo.models.Category;
+import com.etfmovies.videoinfo.models.MovieData;
 import com.etfmovies.videoinfo.models.Video;
 import com.etfmovies.videoinfo.models.VideoImage;
 import com.etfmovies.videoinfo.utils.VideoInfoResponseObject;
@@ -15,5 +16,6 @@ public interface IVideoInfoService {
     Long getVideoRating(Long id);
     List<VideoImage> getVideoImages(Long videoId);
     List<Category> getAllCategories();
+    Long uploadMovie(MovieData movieData);
     List<Video> getVideosByCategory(String category);
 }

@@ -18,15 +18,14 @@ export class RegisterComponent implements OnInit {
         lastName: new FormControl('', Validators.required),
       }),
       birthDate: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.pattern("[^ @]*@[^ @]*")]),
+      email: new FormControl('', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
-    })
+    });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      alert("Form Submitted!");
+      alert('Form Submitted!');
     }
   }
-
 }

@@ -1,6 +1,7 @@
 package com.etfmovies.videoinfo.controllers;
 
 import com.etfmovies.videoinfo.models.Category;
+import com.etfmovies.videoinfo.models.MovieData;
 import com.etfmovies.videoinfo.models.Video;
 import com.etfmovies.videoinfo.models.VideoImage;
 import com.etfmovies.videoinfo.services.VideoInfoService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @CrossOrigin
@@ -63,6 +65,16 @@ public class VideoInfoController {
 
         videoInfoService.deleteVideo(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/add-video", method = RequestMethod.POST)
+    public ResponseEntity registerUser(@RequestBody MovieData movieData){
+        try{
+            return ResponseEntity.ok(videoInfoService.uploadMovie(movieData));
+        }
+        catch (ConstraintViolationException ex){
+            return new ResponseEntity("All properties must be provided.", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping("/getAllCategories")

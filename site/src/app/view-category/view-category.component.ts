@@ -19,7 +19,7 @@ export class ViewCategoryComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.categoryName = params['category'];
-      this.videoService.getVideosByCategory(this.categoryName).subscribe(videos => { 
+      this.videoService.getVideosByCategory(this.categoryName).subscribe(videos => {
         this.videos = videos;
       });
     });

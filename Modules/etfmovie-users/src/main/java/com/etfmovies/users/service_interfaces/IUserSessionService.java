@@ -1,5 +1,6 @@
 package com.etfmovies.users.service_interfaces;
 
+import com.etfmovies.users.models.UserSession;
 import com.etfmovies.users.utils.AuthMessage;
 
 public interface IUserSessionService {

@@ -28,6 +28,9 @@ public class Video {
     @Transient
     private String uploadedByUser;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "video", cascade = { CascadeType.REMOVE }, orphanRemoval = true)
+    private List<VideoImage> images;
+
     @NotNull
     private Date uploadDate;
 

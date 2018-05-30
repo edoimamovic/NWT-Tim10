@@ -1,9 +1,6 @@
 package com.etfmovies.videoinfo.services;
 
-import com.etfmovies.videoinfo.models.Category;
-import com.etfmovies.videoinfo.models.Review;
-import com.etfmovies.videoinfo.models.Video;
-import com.etfmovies.videoinfo.models.VideoImage;
+import com.etfmovies.videoinfo.models.*;
 import com.etfmovies.videoinfo.repositories.CategoryRepository;
 import com.etfmovies.videoinfo.repositories.ReviewRepository;
 import com.etfmovies.videoinfo.repositories.VideoImageRepository;
@@ -24,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -84,6 +82,16 @@ public class VideoInfoService implements IVideoInfoService {
         Double score = scoreSum*1.0/reviews.size();
         return score.longValue();
     }
+
+    @Override
+    public Long uploadMovie(MovieData movieData) {
+        //String title, @NotNull Long uploadedBy, @NotNull Date uploadDate, String thumbnailUrl, String description, Category category
+        Category cat = categoryRepository.findById(movieData.getCategoryId()).get();
+        Video video = new Video(movieData.getTitle(), movieData.getUploadedBy(), new Date(), null, movieData.getDescription(), cat);
+        videoRepository.save(video);
+        return video.getId();
+    }
+
 
     @Override
     public List<VideoImage> getVideoImages(Long videoId) {

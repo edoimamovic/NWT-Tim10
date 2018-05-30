@@ -2,6 +2,7 @@ package com.etfmovies.users.controllers;
 
 import com.etfmovies.users.models.UserData;
 import com.etfmovies.users.services.UserService;
+import com.etfmovies.users.services.UserSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import javax.validation.ConstraintViolationException;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserSessionService sessionService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity registerUser(@RequestBody UserData userData){
@@ -40,6 +44,13 @@ public class UserController {
         return userService.getUserDataByUserId(id);
     }
 
+
+    @RequestMapping(value = "/getInfoByEmail", method = RequestMethod.GET)
+    public ResponseEntity<UserData> getUserData(@RequestParam("email") String email){
+        UserData data = userService.getUserDataByEmail(email);
+        return ResponseEntity.ok(data);
+    }
+
     @RequestMapping(value = "/activate", method = RequestMethod.PUT)
     public ResponseEntity activateUser(@RequestParam("email") String email){
         if (email == null ||email.isEmpty()){
@@ -49,13 +60,4 @@ public class UserController {
         return new ResponseEntity("All properties must be provided.", HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/change-password", method = RequestMethod.PUT)
-    public ResponseEntity changePassword(@RequestParam("email") String email, @RequestParam("password") String password){
-        if (email == null || email.isEmpty() || password == null || password.isEmpty()){
-            return new ResponseEntity("Email and password must be provided", HttpStatus.BAD_REQUEST);
-        }
-
-        userService.changePassword(email, password);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
 }

@@ -27,6 +27,9 @@
               <a *ngFor="let c of categories" class="dropdown-item" [routerLink]="['/categories/', c.categoryName]">{{ c.categoryName }}</a>
             </div>
         </li>
+        <li class="nav-item" *ngIf="authService.isAdmin()">
+            <a class="nav-link" [routerLink]="['/add-movie']">Add Movie</a>
+          </li>
       </ul>
 
       <ul class="navbar-nav ml-auto">

@@ -5,15 +5,17 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { UserService } from './user.service';
+import { UserData } from './shared/user-data';
 
 @Injectable()
 export class AuthService {
 
     API_URL = 'http://localhost:8090/auth';
     TOKEN_KEY = 'token';
-    private email: string;
+    private userData: UserData;
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
     get token() {
         return localStorage.getItem(this.TOKEN_KEY);
@@ -28,8 +30,8 @@ export class AuthService {
         this.router.navigateByUrl('/');
     }
 
-    public getEmail(): string {
-        return this.email;
+    public get user(): UserData {
+        return this.userData;
     }
 
     login(email: string, pass: string): Observable<any> {
@@ -47,8 +49,11 @@ export class AuthService {
                 token = token.replace('Bearer ', '');
                 localStorage.setItem(this.TOKEN_KEY, token);
                 this.router.navigateByUrl('');
-                this.email = email;
                 observer.next({email: email});
+
+                this.userService.getUserData(email).subscribe(data => {
+                    this.userData = new UserData(data);
+                });
             },
         (err: HttpErrorResponse) => {
             observer.next({errorMessage: 'Email/password combination is incorrect.'});
@@ -58,7 +63,33 @@ export class AuthService {
         return response;
     }
 
+public refreshUserData(): void {
+    this.userService.getUserData(this.userData.email).subscribe(data => {
+        this.userData = new UserData(data);
+    });
+}
+
+public isAdmin(): boolean {
+    return !!this.user && this.user.email.includes('admin');
+}
+
+    public changePassword(password: string, newPassword: string): Observable<boolean> {
+        const response = new Observable<any>(observer => {
+            // tslint:disable-next-line:max-line-length
+            this.http.put(`${this.API_URL}/auth-data/change-password?email=${this.user.email}&password=${password}&newPassword=${newPassword}`, {})
+            .subscribe((res: any) => {
+            observer.next(true);
+        },
+        (err: HttpErrorResponse) => {
+            observer.next(false);
+        });
+    });
+
+    return response;
+    }
+
     getAccount() {
         return this.http.get(this.API_URL + '/account');
     }
+
 }

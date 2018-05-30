@@ -1,5 +1,6 @@
 package com.etfmovies.videostream.services;
 
+import com.etfmovies.videostream.models.Video;
 import com.etfmovies.videostream.repositories.VideoRepository;
 import com.etfmovies.videostream.service_interfaces.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,5 +14,11 @@ public class VideoService implements IVideoService {
     @Override
     public String serveVideo(Integer videoId) {
         return videoRepository.findByVideoId(videoId).getPath();
+    }
+
+    @Override
+    public Boolean addVideo(Video video) {
+        this.videoRepository.save(video);
+        return true;
     }
 }
