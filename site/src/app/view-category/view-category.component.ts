@@ -10,18 +10,31 @@ import { Video } from '../shared/video';
   styleUrls: ['./view-category.component.css']
 })
 export class ViewCategoryComponent implements OnInit {
+  private searchString='';
   private categoryName: string;
   private videos: Array<Video>;
 
   constructor(private route: ActivatedRoute,
               private videoService: VideoService) { }
 
+  private searchcategory() {
+    this.route.params.subscribe(params => {
+      this.categoryName = params['category'];
+      this.videoService.searchcategory(this.searchString,this.categoryName).subscribe(resp => {
+      this.videos = resp;
+    });
+  });
+  }
+       
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.categoryName = params['category'];
-      this.videoService.getVideosByCategory(this.categoryName).subscribe(videos => {
+      this.videoService.getVideosByCategory(this.categoryName).subscribe(videos => { 
         this.videos = videos;
-      });
-    });
+       
+      }); 
+
+    }); this.searchcategory();
+    
   }
 }

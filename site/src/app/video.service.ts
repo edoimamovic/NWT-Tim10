@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Video } from './shared/video';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +40,11 @@ export class VideoService {
   public addStream(data: any): Observable<boolean> {
     return this.http.post<boolean>(`${this.STREAM_API_URL}add`, data);
   }
+  public searchcategory(string: string = '', category: string): Observable<Array<Video>> {
+    let allResults = this.http.get<Array<Video>>(`${this.API_URL}search?string=${string}`);
+    let onlyFromCategory = map((va:Video[]) => va.filter(v => (v.category as any).categoryName == category));
+    let filteredResults = onlyFromCategory(allResults);
+    return filteredResults;
+  }
+
 }

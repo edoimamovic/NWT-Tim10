@@ -26,6 +26,7 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ViewCategoryComponent } from './view-category/view-category.component';
 import { RegisterComponent } from './register/register.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
+import { OnlyShowsComponent } from './only-shows/only-shows.component';
 
 const appRoutes: Routes = [
   {
@@ -68,6 +69,15 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'onlyshows',
+    component: OnlyShowsComponent
+  },
+  {
+    path: '',
+    redirectTo: '/onlyshows',
+    pathMatch: 'full'
+  },
+  {
     path: 'categories/:category',
     component: ViewCategoryComponent
   },
@@ -96,7 +106,8 @@ const appRoutes: Routes = [
     VideoTileComponent,
     ViewCategoryComponent,
     RegisterComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    OnlyShowsComponent
   ],
   imports: [
     RouterModule.forRoot(

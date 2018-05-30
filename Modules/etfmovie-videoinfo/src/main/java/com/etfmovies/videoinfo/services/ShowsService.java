@@ -1,6 +1,7 @@
 package com.etfmovies.videoinfo.services;
 
 import com.etfmovies.videoinfo.models.Episode;
+import com.etfmovies.videoinfo.models.Show;
 import com.etfmovies.videoinfo.repositories.EpisodesRepository;
 import com.etfmovies.videoinfo.repositories.ShowsRepository;
 import com.etfmovies.videoinfo.repositories.VideoRepository;
@@ -31,6 +32,16 @@ public class ShowsService implements IShowsService {
             throw new EmptyResultDataAccessException("No show the with provided Id.", 1);
         }
     }
+
+    @Override
+    public  List<Show> getShows() {
+        try {
+            return showsRepository.findAll();
+        } catch (EmptyResultDataAccessException ex) {
+            throw new EmptyResultDataAccessException("No show the with provided Id.", 1);
+        }
+    }
+
 
     @Override
     public List<Episode> getEpisodes(Long showId) {

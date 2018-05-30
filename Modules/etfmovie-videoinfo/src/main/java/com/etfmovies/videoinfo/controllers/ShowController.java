@@ -16,6 +16,11 @@ public class ShowController {
     @Autowired
     private ShowsService showsService;
 
+    @RequestMapping(path = "/all")
+    ResponseEntity Shows(Long id) {
+        return ResponseEntity.ok().body(showsService.getShows());
+    }
+
     @RequestMapping(path = "/episodes")
     ResponseEntity Episodes(Long id) {
         if (id < 0 || id == null) {
