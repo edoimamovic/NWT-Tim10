@@ -19,6 +19,10 @@ export class ProfilePageComponent implements OnInit {
   private passwordForm: FormGroup;
 
   private getDateString(date: Date): string {
+    if (!date) {
+      return null;
+    }
+
     return (new Date(date)).toISOString().substring(0, 10);
   }
 
@@ -38,8 +42,15 @@ export class ProfilePageComponent implements OnInit {
       passwordRepeat: new FormControl('', Validators.required),
     });
 
-    this.profileForm.patchValue(this.authService.user);
-    this.profileForm.get('birthDate').setValue(this.getDateString(this.authService.user.birthDate));
+    if (!this.authService.user) {
+      this.authService.refreshUserData().subscribe(x => {
+        this.profileForm.patchValue(this.authService.user);
+        this.profileForm.get('birthDate').setValue(this.getDateString(this.authService.user.birthDate));
+      });
+    } else {
+      this.profileForm.patchValue(this.authService.user);
+      this.profileForm.get('birthDate').setValue(this.getDateString(this.authService.user.birthDate));
+    }
   }
 
   private changePassword(): void {
@@ -59,8 +70,7 @@ export class ProfilePageComponent implements OnInit {
 
   private updateData(): void {
     const reqObject = this.profileForm.value;
-    const oldData = this.authService.user;
-    reqObject.id = oldData.id;
+    reqObject.id = this.authService.userId;
 
     this.userService.updateUserData(this.profileForm.value).subscribe(resp => {
       this.profileNotificationMessage = resp ? 'Password successfully changed.' : 'You have entered a wrong password.';

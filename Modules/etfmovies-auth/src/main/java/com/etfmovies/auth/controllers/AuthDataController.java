@@ -41,4 +41,11 @@ class AuthDataController {
         repository.save(userData);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity register(@RequestBody ApplicationUser user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        repository.save(user);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }

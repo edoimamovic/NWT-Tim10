@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -17,7 +18,6 @@ export class RegisterComponent implements OnInit {
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
       }),
-      birthDate: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
@@ -25,7 +25,9 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      alert('Form Submitted!');
-    }
+        this.userService.register(this.registerForm.value).subscribe(x => {
+          console.log("done");
+        });
+      }
   }
 }

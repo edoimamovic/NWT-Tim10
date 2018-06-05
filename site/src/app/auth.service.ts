@@ -27,11 +27,21 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem(this.TOKEN_KEY);
+        localStorage.removeItem('userId');
+        localStorage.removeItem('email');
         this.router.navigateByUrl('/');
     }
 
     public get user(): UserData {
         return this.userData;
+    }
+
+    public get userId(): number {
+        return this.isAuthenticated ? +localStorage.getItem('userId') : null;
+    }
+
+    public get email(): string {
+        return this.isAuthenticated ? localStorage.getItem('email') : null;
     }
 
     login(email: string, pass: string): Observable<any> {
@@ -53,6 +63,8 @@ export class AuthService {
 
                 this.userService.getUserData(email).subscribe(data => {
                     this.userData = new UserData(data);
+                    localStorage.setItem('userId', this.userData.id.toString());
+                    localStorage.setItem('email', this.userData.email);
                 });
             },
         (err: HttpErrorResponse) => {
@@ -63,14 +75,18 @@ export class AuthService {
         return response;
     }
 
-public refreshUserData(): void {
-    this.userService.getUserData(this.userData.email).subscribe(data => {
-        this.userData = new UserData(data);
+public refreshUserData(): Observable<any> {
+    const response = new Observable<any>(observer => {
+        this.userService.getUserData(localStorage.getItem('email')).subscribe(data => {
+            this.userData = new UserData(data);
+            observer.next();
+        });
     });
+    return response;
 }
 
 public isAdmin(): boolean {
-    return !!this.user && this.user.email.includes('admin');
+    return !!localStorage.getItem('email') && localStorage.getItem('email').includes('admin');
 }
 
     public changePassword(password: string, newPassword: string): Observable<boolean> {
